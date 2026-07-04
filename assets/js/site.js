@@ -56,7 +56,7 @@
       t.__revealed = true;
       var sibs = t.parentElement ? Array.prototype.slice.call(t.parentElement.querySelectorAll(':scope > [data-reveal]')) : [];
       var idx = sibs.indexOf(t);
-      t.style.transitionDelay = (Math.max(0, idx) * 70) + 'ms';
+      t.style.transitionDelay = (Math.min(Math.max(0, idx), 8) * 70) + 'ms';
       t.style.opacity = '1';
       t.style.transform = 'none';
     };
