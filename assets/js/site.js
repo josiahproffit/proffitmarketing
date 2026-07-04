@@ -81,20 +81,65 @@
     setTimeout(function () { els.forEach(show); }, 1400);
   }
 
-  // Elements carrying style-hover / style-focus swap in the extra inline
-  // styles on interaction and restore the base style on the way out.
+  // Parses "transform:translateY(-6px);box-shadow:0 1px 2px red" into
+  // { transform: 'translateY(-6px)', boxShadow: '0 1px 2px red' } so
+  // individual properties can be swapped via el.style[prop] instead of
+  // replacing the whole style attribute (see initStyleSwaps below).
+  function parseStyleProps(text) {
+    var props = {};
+    (text || '').split(';').forEach(function (decl) {
+      var i = decl.indexOf(':');
+      if (i === -1) return;
+      var prop = decl.slice(0, i).trim();
+      var value = decl.slice(i + 1).trim();
+      if (!prop || !value) return;
+      var camel = prop.replace(/-([a-z])/g, function (m, c) { return c.toUpperCase(); });
+      props[camel] = value;
+    });
+    return props;
+  }
+
+  // Elements carrying style-hover / style-focus swap in only the specific
+  // properties style-hover/style-focus declare, restoring each property's
+  // own pre-interaction value on the way out. Deliberately does NOT
+  // snapshot/restore the whole style attribute: other code (e.g. the
+  // scroll-reveal animation above) mutates opacity/transform on these same
+  // elements asynchronously, and a whole-attribute swap would freeze in
+  // whatever the style looked like at page load, permanently reverting
+  // later changes (like a reveal-in fade) the next time the element is
+  // hovered.
   function initStyleSwaps() {
     document.querySelectorAll('[style-hover]').forEach(function (el) {
-      var base = el.getAttribute('style') || '';
-      var hover = el.getAttribute('style-hover');
-      el.addEventListener('mouseenter', function () { el.style.cssText = base + ';' + hover; });
-      el.addEventListener('mouseleave', function () { el.style.cssText = base; });
+      var hoverProps = parseStyleProps(el.getAttribute('style-hover'));
+      var saved = null;
+      el.addEventListener('mouseenter', function () {
+        saved = {};
+        Object.keys(hoverProps).forEach(function (prop) {
+          saved[prop] = el.style[prop];
+          el.style[prop] = hoverProps[prop];
+        });
+      });
+      el.addEventListener('mouseleave', function () {
+        if (!saved) return;
+        Object.keys(saved).forEach(function (prop) { el.style[prop] = saved[prop]; });
+        saved = null;
+      });
     });
     document.querySelectorAll('[style-focus]').forEach(function (el) {
-      var base = el.getAttribute('style') || '';
-      var focus = el.getAttribute('style-focus');
-      el.addEventListener('focus', function () { el.style.cssText = base + ';' + focus; });
-      el.addEventListener('blur', function () { el.style.cssText = base; });
+      var focusProps = parseStyleProps(el.getAttribute('style-focus'));
+      var saved = null;
+      el.addEventListener('focus', function () {
+        saved = {};
+        Object.keys(focusProps).forEach(function (prop) {
+          saved[prop] = el.style[prop];
+          el.style[prop] = focusProps[prop];
+        });
+      });
+      el.addEventListener('blur', function () {
+        if (!saved) return;
+        Object.keys(saved).forEach(function (prop) { el.style[prop] = saved[prop]; });
+        saved = null;
+      });
     });
   }
 

@@ -27,43 +27,14 @@ const posts = GROUPS.flatMap((g) => g.data.map((p) => ({ ...p, group: g.key })))
 
 const bySlug = new Map(posts.map((p) => [p.slug, p]));
 
-const CATEGORY_COLORS = {
-  'Website Design': ['#2563eb', '#5b8bf5'],
-  'Local SEO': ['#0e9f6e', '#34d399'],
-  'Google Business Profile': ['#2563eb', '#60a5fa'],
-  'Website Speed': ['#d97706', '#f59e0b'],
-  'Website Maintenance': ['#475569', '#94a3b8'],
-  'Website Redesign': ['#7c3aed', '#a78bfa'],
-  'Website Pricing': ['#0891b2', '#22d3ee'],
-  'SEO Basics': ['#16a34a', '#4ade80'],
-  'Conversion Optimization': ['#dc2626', '#f87171'],
-  'Digital Marketing': ['#2563eb', '#818cf8'],
-  'Owner Questions': ['#6b7280', '#9ca3af'],
-  Roofing: ['#b45309', '#f59e0b'],
-  HVAC: ['#0369a1', '#38bdf8'],
-  Plumbing: ['#1d4ed8', '#60a5fa'],
-  Electrical: ['#ca8a04', '#facc15'],
-  Landscaping: ['#15803d', '#4ade80'],
-  'Pressure Washing': ['#0891b2', '#67e8f9'],
-  'Window Cleaning': ['#0284c7', '#7dd3fc'],
-  Concrete: ['#57534e', '#a8a29e'],
-  Fencing: ['#92400e', '#d97706'],
-  'Tree Services': ['#166534', '#22c55e'],
-  Painting: ['#be185d', '#f472b6'],
-  'Auto Detailing': ['#1e293b', '#64748b'],
-  'Med Spas': ['#a21caf', '#e879f9'],
-  Dental: ['#0e7490', '#22d3ee'],
-  Chiropractic: ['#4338ca', '#818cf8'],
-  'Real Estate': ['#166534', '#65a30d'],
-  Legal: ['#1e3a8a', '#3b82f6'],
-  Restaurants: ['#b91c1c', '#f87171'],
-  Fitness: ['#c2410c', '#fb923c'],
-  'Cleaning Services': ['#0f766e', '#2dd4bf'],
-};
+// One consistent brand gradient for every card/hero thumbnail, reusing the
+// exact navy-to-blue gradient already used for the homepage's pricing card
+// and contact section — so blog cards read as part of the same site rather
+// than each category getting its own color.
+const CARD_GRADIENT = 'linear-gradient(135deg, #102352, #1d4ed8 55%, #3b6ef5)';
 
-function gradientFor(category) {
-  const [a, b] = CATEGORY_COLORS[category] || ['#2563eb', '#5b8bf5'];
-  return `linear-gradient(135deg, ${a}, ${b})`;
+function gradientFor() {
+  return CARD_GRADIENT;
 }
 
 function esc(str = '') {
