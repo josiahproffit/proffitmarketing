@@ -179,15 +179,21 @@ function renderPost(post) {
 <meta name="author" content="Josiah Proffit">
 <link rel="canonical" href="${SITE_URL}/blog/${post.slug}.html">
 
+<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/images/favicon-512.png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
 <meta property="og:type" content="article">
 <meta property="og:title" content="${esc(post.title)}">
 <meta property="og:description" content="${esc(post.metaDescription)}">
 <meta property="og:url" content="${SITE_URL}/blog/${post.slug}.html">
+<meta property="og:image" content="${SITE_URL}/assets/images/og-image.png">
 <meta property="article:published_time" content="${post.date}">
 <meta property="article:author" content="Josiah Proffit">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(post.title)}">
 <meta name="twitter:description" content="${esc(post.metaDescription)}">
+<meta name="twitter:image" content="${SITE_URL}/assets/images/og-image.png">
 
 <link rel="stylesheet" href="/assets/css/style.css">
 
@@ -197,6 +203,7 @@ ${JSON.stringify({
   '@type': 'BlogPosting',
   headline: post.title,
   description: post.metaDescription,
+  image: `${SITE_URL}/assets/images/og-image.png`,
   datePublished: post.date,
   dateModified: post.date,
   author: { '@type': 'Person', name: 'Josiah Proffit' },
@@ -342,7 +349,7 @@ ${renderRelated(post)}
         <div style="font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px">Get in touch</div>
         <div style="display:grid;gap:11px">
           <a href="/#contact" style="font-size:.93rem;color:rgba(255,255,255,.7)">Get a free quote</a>
-          <div style="font-size:.93rem;color:rgba(255,255,255,.7)">(904) 555-0142</div>
+          <a href="tel:+19043974279" style="font-size:.93rem;color:rgba(255,255,255,.7)">(904) 397-4279</a>
           <div style="font-size:.93rem;color:rgba(255,255,255,.7)">josiahproffit@gmail.com</div>
         </div>
       </div>
@@ -433,6 +440,23 @@ function buildIndexHtml() {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Marketing Blog | Proffit Marketing</title>
 <meta name="description" content="Articles on websites, SEO, Google Business Profile optimization, AI, digital marketing, and growing a local business — from the Proffit Marketing team in Jacksonville, FL.">
+<meta name="author" content="Josiah Proffit">
+<link rel="canonical" href="${SITE_URL}/blog/">
+
+<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/images/favicon-512.png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Marketing Blog | Proffit Marketing">
+<meta property="og:description" content="Articles on websites, SEO, Google Business Profile optimization, AI, digital marketing, and growing a local business — from the Proffit Marketing team in Jacksonville, FL.">
+<meta property="og:url" content="${SITE_URL}/blog/">
+<meta property="og:image" content="${SITE_URL}/assets/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Marketing Blog | Proffit Marketing">
+<meta name="twitter:description" content="Articles on websites, SEO, Google Business Profile optimization, AI, digital marketing, and growing a local business — from the Proffit Marketing team in Jacksonville, FL.">
+<meta name="twitter:image" content="${SITE_URL}/assets/images/og-image.png">
+
 <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
@@ -512,7 +536,7 @@ ${sections}
         <div style="font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px">Get in touch</div>
         <div style="display:grid;gap:11px">
           <a href="/#contact" style="font-size:.93rem;color:rgba(255,255,255,.7)">Get a free quote</a>
-          <div style="font-size:.93rem;color:rgba(255,255,255,.7)">(904) 555-0142</div>
+          <a href="tel:+19043974279" style="font-size:.93rem;color:rgba(255,255,255,.7)">(904) 397-4279</a>
           <div style="font-size:.93rem;color:rgba(255,255,255,.7)">josiahproffit@gmail.com</div>
         </div>
       </div>
