@@ -16,7 +16,14 @@ import { cities } from '../blog-data/cities.mjs';
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const SITE_URL = 'https://proffitmarketing.com';
 
-const posts = [...general, ...industries, ...faq, ...cities];
+const GROUPS = [
+  { key: 'guides', label: 'Website & Marketing Guides', data: general },
+  { key: 'industry', label: 'Industry-Specific Guides', data: industries },
+  { key: 'faq', label: 'Common Questions', data: faq },
+  { key: 'local', label: 'Local SEO by City', data: cities },
+];
+
+const posts = GROUPS.flatMap((g) => g.data.map((p) => ({ ...p, group: g.key })));
 
 const bySlug = new Map(posts.map((p) => [p.slug, p]));
 
@@ -198,6 +205,7 @@ function renderPost(post) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(post.seoTitle)} | Proffit Marketing Blog</title>
 <meta name="description" content="${esc(post.metaDescription)}">
+<meta name="author" content="Josiah Proffit">
 <link rel="canonical" href="${SITE_URL}/blog/${post.slug}.html">
 
 <meta property="og:type" content="article">
@@ -205,6 +213,7 @@ function renderPost(post) {
 <meta property="og:description" content="${esc(post.metaDescription)}">
 <meta property="og:url" content="${SITE_URL}/blog/${post.slug}.html">
 <meta property="article:published_time" content="${post.date}">
+<meta property="article:author" content="Josiah Proffit">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(post.title)}">
 <meta name="twitter:description" content="${esc(post.metaDescription)}">
@@ -388,7 +397,7 @@ function renderIndexCard(post) {
     day: 'numeric',
     year: 'numeric',
   });
-  return `      <a href="/blog/${post.slug}.html" data-reveal="" style="display:block;background:#fff;border:1px solid #eaecf1;border-radius:20px;overflow:hidden;box-shadow:0 1px 3px rgba(16,24,40,.04);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease" style-hover="transform:translateY(-6px);box-shadow:0 24px 54px rgba(16,24,40,.12);border-color:#dde3ee">
+  return `      <a href="/blog/${post.slug}.html" data-reveal="" data-group="${post.group}" data-category="${esc(post.category)}" style="display:block;background:#fff;border:1px solid #eaecf1;border-radius:20px;overflow:hidden;box-shadow:0 1px 3px rgba(16,24,40,.04);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease" style-hover="transform:translateY(-6px);box-shadow:0 24px 54px rgba(16,24,40,.12);border-color:#dde3ee">
         <div style="height:170px;overflow:hidden;background:${gradientFor(post.category)};display:flex;align-items:center;justify-content:center;position:relative">
           <div style="position:absolute;inset:0;background-image:linear-gradient(#ffffff14 1px,transparent 1px),linear-gradient(90deg,#ffffff14 1px,transparent 1px);background-size:28px 28px"></div>
           <span style="position:relative;font-size:1.05rem;font-weight:800;color:rgba(255,255,255,.92);letter-spacing:-.01em;text-align:center;padding:0 20px">${esc(post.category)}</span>
@@ -402,12 +411,49 @@ function renderIndexCard(post) {
       </a>`;
 }
 
-function buildIndexHtml() {
-  const cards = posts
-    .slice()
-    .sort((a, b) => (a.date < b.date ? 1 : -1))
-    .map(renderIndexCard)
+function buildFilterPills() {
+  const allBtn = `      <button type="button" data-filter="all" style="flex-shrink:0;background:#0e1116;color:#fff;font-size:.86rem;font-weight:600;padding:9px 18px;border:none;border-radius:100px;cursor:pointer;font-family:inherit;white-space:nowrap">All Articles</button>`;
+  const groupBtns = GROUPS.map(
+    (g) =>
+      `      <button type="button" data-filter="${g.key}" style="flex-shrink:0;background:#fff;color:#3d4452;font-size:.86rem;font-weight:600;padding:9px 18px;border:1px solid #e4e7ee;border-radius:100px;cursor:pointer;font-family:inherit;white-space:nowrap">${esc(g.label)}</button>`
+  ).join('\n');
+  return `${allBtn}\n${groupBtns}`;
+}
+
+function buildIndustrySubfilter() {
+  const industryCategories = [...new Set(industries.map((p) => p.category))];
+  const allBtn = `        <button type="button" data-subfilter="all" style="flex-shrink:0;background:#eef4ff;color:#2563eb;font-size:.8rem;font-weight:600;padding:6px 14px;border:none;border-radius:100px;cursor:pointer;font-family:inherit;white-space:nowrap">All Trades</button>`;
+  const catBtns = industryCategories
+    .map(
+      (cat) =>
+        `        <button type="button" data-subfilter="${esc(cat)}" style="flex-shrink:0;background:#f5f6f8;color:#3d4452;font-size:.8rem;font-weight:600;padding:6px 14px;border:none;border-radius:100px;cursor:pointer;font-family:inherit;white-space:nowrap">${esc(cat)}</button>`
+    )
     .join('\n');
+  return `${allBtn}\n${catBtns}`;
+}
+
+function buildGroupSection(group) {
+  const groupPosts = posts
+    .filter((p) => p.group === group.key)
+    .slice()
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
+  const cards = groupPosts.map(renderIndexCard).join('\n');
+  const subfilter =
+    group.key === 'industry'
+      ? `      <div data-subfilter-row="" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px">
+${buildIndustrySubfilter()}
+      </div>\n`
+      : '';
+  return `    <div data-blog-group="${group.key}" style="margin-bottom:56px">
+      <h2 style="font-size:1.4rem;font-weight:800;letter-spacing:-.02em;margin-bottom:18px">${esc(group.label)}</h2>
+${subfilter}      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
+${cards}
+      </div>
+    </div>`;
+}
+
+function buildIndexHtml() {
+  const sections = GROUPS.map(buildGroupSection).join('\n\n');
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -465,8 +511,11 @@ function buildIndexHtml() {
 
 <section style="padding:0 0 clamp(72px,9vw,116px)">
   <div style="max-width:1200px;margin:0 auto;padding:0 24px">
-    <div id="blog-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
-${cards}
+    <div data-filter-row="" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:44px;position:sticky;top:76px;z-index:10;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);padding:12px 0">
+${buildFilterPills()}
+    </div>
+    <div id="blog-grid">
+${sections}
     </div>
   </div>
 </section>

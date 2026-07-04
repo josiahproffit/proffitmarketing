@@ -185,6 +185,59 @@
     });
   }
 
+  // Blog index: top-level group filter pills + industry sub-filter chips.
+  function initBlogFilter() {
+    var filterBtns = document.querySelectorAll('[data-filter]');
+    var groups = document.querySelectorAll('[data-blog-group]');
+    if (!filterBtns.length || !groups.length) return;
+
+    var setActive = function (btn, active) {
+      if (active) {
+        btn.style.background = '#0e1116';
+        btn.style.color = '#fff';
+        btn.style.border = 'none';
+      } else {
+        btn.style.background = '#fff';
+        btn.style.color = '#3d4452';
+        btn.style.border = '1px solid #e4e7ee';
+      }
+    };
+
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var filter = btn.getAttribute('data-filter');
+        filterBtns.forEach(function (b) { setActive(b, b === btn); });
+        groups.forEach(function (g) {
+          g.style.display = (filter === 'all' || g.getAttribute('data-blog-group') === filter) ? '' : 'none';
+        });
+      });
+    });
+
+    var subBtns = document.querySelectorAll('[data-subfilter]');
+    if (!subBtns.length) return;
+    var industryCards = document.querySelectorAll('[data-blog-group="industry"] [data-category]');
+
+    var setSubActive = function (btn, active) {
+      if (active) {
+        btn.style.background = '#eef4ff';
+        btn.style.color = '#2563eb';
+      } else {
+        btn.style.background = '#f5f6f8';
+        btn.style.color = '#3d4452';
+      }
+    };
+
+    subBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var sub = btn.getAttribute('data-subfilter');
+        subBtns.forEach(function (b) { setSubActive(b, b === btn); });
+        industryCards.forEach(function (card) {
+          card.style.display = (sub === 'all' || card.getAttribute('data-category') === sub) ? '' : 'none';
+        });
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initNavScroll();
     initMobileMenu();
@@ -192,5 +245,6 @@
     initStyleSwaps();
     initFaq();
     initContactForm();
+    initBlogFilter();
   });
 })();
