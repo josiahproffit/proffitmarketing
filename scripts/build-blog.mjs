@@ -12,6 +12,8 @@ import { general } from '../blog-data/general.mjs';
 import { industries } from '../blog-data/industries.mjs';
 import { faq } from '../blog-data/faq.mjs';
 import { cities } from '../blog-data/cities.mjs';
+import { services } from '../page-data/services.mjs';
+import { locations } from '../page-data/locations.mjs';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const SITE_URL = 'https://proffitmarketing.com';
@@ -35,6 +37,83 @@ const CARD_GRADIENT = 'linear-gradient(135deg, #102352, #1d4ed8 55%, #3b6ef5)';
 
 function gradientFor() {
   return CARD_GRADIENT;
+}
+
+const serviceBySlug = new Map(services.map((s) => [s.slug, s]));
+const locationBySlug = new Map(locations.map((l) => [l.slug, l]));
+
+// Maps each blog post to the 1-2 commercial service pages most relevant to
+// it, so every post links to a page that actually sells something instead
+// of ending at another free article.
+const CITY_TO_LOCATION = {
+  'local-seo-jacksonville-fl': 'jacksonville',
+  'local-seo-jacksonville-beach-fl': 'jacksonville-beach',
+  'local-seo-ponte-vedra-fl': 'ponte-vedra-beach',
+  'local-seo-orange-park-fl': 'orange-park',
+  'local-seo-st-augustine-fl': 'st-augustine',
+  'local-seo-atlantic-beach-fl': 'atlantic-beach',
+  'local-seo-fernandina-beach-fl': 'fernandina-beach',
+  'local-seo-neptune-beach-fl': 'neptune-beach',
+  'local-seo-middleburg-fl': 'middleburg',
+  'local-seo-yulee-fl': 'yulee',
+};
+
+const GUIDE_SERVICE_MAP = {
+  'small-business-website-design-guide': ['small-business-web-design', 'custom-website-design'],
+  'local-seo-guide-for-small-businesses': ['local-seo-services'],
+  'google-business-profile-optimization-guide': ['google-business-profile-management'],
+  'why-website-speed-matters': ['website-speed-optimization'],
+  'website-maintenance-checklist': ['website-maintenance-plans', 'website-security-backups'],
+  'signs-its-time-for-a-website-redesign': ['website-redesign-services'],
+  'how-much-does-a-website-cost': ['custom-website-design', 'website-care-plan'],
+  'seo-basics-for-small-business-owners': ['local-seo-services'],
+  'website-conversion-optimization-tips': ['conversion-rate-optimization'],
+  'digital-marketing-strategy-for-local-business': ['conversion-rate-optimization', 'google-analytics-setup'],
+};
+
+const FAQ_SERVICE_MAP = {
+  'do-i-really-need-a-website-in-2026': ['custom-website-design'],
+  'how-long-does-it-take-to-build-a-website': ['custom-website-design'],
+  'website-vs-social-media-page': ['custom-website-design'],
+  'how-many-pages-should-my-website-have': ['custom-website-design'],
+  'diy-website-builder-vs-professional': ['website-migration', 'custom-website-design'],
+  'what-makes-a-website-trustworthy': ['website-copywriting', 'logo-and-branding'],
+  'how-often-should-i-update-my-website': ['website-maintenance-plans'],
+  'what-is-a-sitemap-and-why-it-matters': ['local-seo-services'],
+  'website-roi-for-small-business': ['google-analytics-setup'],
+  'website-launch-checklist': ['domain-and-email-setup', 'website-migration'],
+};
+
+function servicesForPost(post) {
+  if (post.group === 'guides') return (GUIDE_SERVICE_MAP[post.slug] || ['custom-website-design']).map((s) => serviceBySlug.get(s)).filter(Boolean);
+  if (post.group === 'faq') return (FAQ_SERVICE_MAP[post.slug] || ['custom-website-design']).map((s) => serviceBySlug.get(s)).filter(Boolean);
+  if (post.group === 'industry') return ['custom-website-design', 'local-seo-services'].map((s) => serviceBySlug.get(s)).filter(Boolean);
+  if (post.group === 'local') return ['local-seo-services', 'google-business-profile-management'].map((s) => serviceBySlug.get(s)).filter(Boolean);
+  return [];
+}
+
+function locationForPost(post) {
+  const slug = CITY_TO_LOCATION[post.slug];
+  return slug ? locationBySlug.get(slug) : null;
+}
+
+function renderServiceLinks(post) {
+  const svcs = servicesForPost(post);
+  const loc = locationForPost(post);
+  if (!svcs.length && !loc) return '';
+  const items = [
+    ...(loc ? [{ href: `/locations/${loc.slug}.html`, label: `Website Design in ${loc.city}, FL` }] : []),
+    ...svcs.map((s) => ({ href: `/services/${s.slug}.html`, label: s.title })),
+  ];
+  return `
+<div style="max-width:820px;margin:0 auto;padding:0 24px clamp(40px,5vw,56px)">
+  <div style="background:#fafbfc;border:1px solid #eef0f4;border-radius:16px;padding:22px 24px">
+    <div style="font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9aa1ad;margin-bottom:12px">Related services</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px">
+${items.map((it) => `      <a href="${it.href}" style="display:inline-flex;align-items:center;gap:6px;background:#eef4ff;color:#2563eb;font-size:.88rem;font-weight:600;padding:9px 16px;border-radius:100px">${esc(it.label)}</a>`).join('\n')}
+    </div>
+  </div>
+</div>`;
 }
 
 function esc(str = '') {
@@ -303,6 +382,7 @@ ${renderSections(post)}
 ${renderFaqHtml(post)}
   </div>
 </div>
+${renderServiceLinks(post)}
 
 <div style="max-width:820px;margin:0 auto;padding:0 24px clamp(56px,7vw,80px)">
   <div style="position:relative;background:linear-gradient(155deg,#0f1b3d,#142a63 55%,#1d4ed8);border-radius:24px;padding:clamp(28px,4vw,40px);overflow:hidden;box-shadow:0 24px 54px rgba(16,30,80,.28);text-align:center">
@@ -351,6 +431,8 @@ ${renderRelated(post)}
           <a href="/#pricing" style="font-size:.93rem;color:rgba(255,255,255,.7)">Pricing</a>
           <a href="/#faq" style="font-size:.93rem;color:rgba(255,255,255,.7)">FAQ</a>
           <a href="/blog/" style="font-size:.93rem;color:rgba(255,255,255,.7)">Blog</a>
+          <a href="/services/" style="font-size:.93rem;color:rgba(255,255,255,.7)">All Service Pages</a>
+          <a href="/locations/" style="font-size:.93rem;color:rgba(255,255,255,.7)">Service Areas</a>
         </div>
       </div>
       <div>
@@ -546,6 +628,8 @@ ${sections}
           <a href="/#pricing" style="font-size:.93rem;color:rgba(255,255,255,.7)">Pricing</a>
           <a href="/#faq" style="font-size:.93rem;color:rgba(255,255,255,.7)">FAQ</a>
           <a href="/blog/" style="font-size:.93rem;color:rgba(255,255,255,.7)">Blog</a>
+          <a href="/services/" style="font-size:.93rem;color:rgba(255,255,255,.7)">All Service Pages</a>
+          <a href="/locations/" style="font-size:.93rem;color:rgba(255,255,255,.7)">Service Areas</a>
         </div>
       </div>
       <div>
@@ -571,15 +655,9 @@ ${sections}
 `;
 }
 
-function buildSitemap() {
-  const staticUrls = ['/', '/blog/'];
-  const postUrls = posts.map((p) => `/blog/${p.slug}.html`);
-  const urls = [...staticUrls, ...postUrls];
-  const body = urls
-    .map((u) => `  <url>\n    <loc>${SITE_URL}${u}</loc>\n  </url>`)
-    .join('\n');
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
-}
+// sitemap.xml is generated by scripts/build-pages.mjs, which also covers
+// /services/ and /locations/ — run that script after this one if both
+// blog and page content changed.
 
 // --- run ---
 mkdirSync(path.join(ROOT, 'blog'), { recursive: true });
@@ -592,6 +670,6 @@ for (const post of posts) {
 }
 
 writeFileSync(path.join(ROOT, 'blog', 'index.html'), buildIndexHtml());
-writeFileSync(path.join(ROOT, 'sitemap.xml'), buildSitemap());
 
-console.log(`Built ${count} posts + blog/index.html + sitemap.xml`);
+console.log(`Built ${count} posts + blog/index.html`);
+console.log('Run scripts/build-pages.mjs afterward to refresh sitemap.xml');
