@@ -145,7 +145,8 @@ export const general = [
     "relatedSlugs": [
       "how-much-does-a-website-cost",
       "website-conversion-optimization-tips",
-      "signs-its-time-for-a-website-redesign"
+      "signs-its-time-for-a-website-redesign",
+      "how-many-pages-should-my-website-have"
     ]
   },
   {
@@ -292,7 +293,8 @@ export const general = [
     "relatedSlugs": [
       "google-business-profile-optimization-guide",
       "seo-basics-for-small-business-owners",
-      "local-seo-jacksonville-fl"
+      "local-seo-jacksonville-fl",
+      "website-design-for-roofers"
     ]
   },
   {

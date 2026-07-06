@@ -1222,7 +1222,8 @@ export const industries = [
     "relatedSlugs": [
       "website-design-for-fence-companies",
       "website-design-for-landscapers",
-      "how-much-does-a-website-cost"
+      "how-much-does-a-website-cost",
+      "website-design-for-painting-contractors"
     ]
   },
   {
@@ -3058,7 +3059,8 @@ export const industries = [
     "relatedSlugs": [
       "website-design-for-pressure-washing-companies",
       "website-design-for-window-cleaning-companies",
-      "local-seo-guide-for-small-businesses"
+      "local-seo-guide-for-small-businesses",
+      "website-design-for-auto-detailers"
     ]
   }
 ];

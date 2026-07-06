@@ -1497,7 +1497,8 @@ export const faq = [
     "relatedSlugs": [
       "how-long-does-it-take-to-build-a-website",
       "website-maintenance-checklist",
-      "what-is-a-sitemap-and-why-it-matters"
+      "what-is-a-sitemap-and-why-it-matters",
+      "how-many-pages-should-my-website-have"
     ]
   }
 ];
