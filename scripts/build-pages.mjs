@@ -165,7 +165,7 @@ function ctaBlock() {
     <div style="position:absolute;top:-90px;right:-70px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(91,139,245,.4),transparent 65%)"></div>
     <div style="position:relative">
       <h3 style="font-size:1.5rem;font-weight:800;letter-spacing:-.02em;color:#fff">Ready for a website that actually works for your business?</h3>
-      <p style="font-size:1rem;color:rgba(255,255,255,.78);line-height:1.6;margin-top:10px;max-width:480px;margin-left:auto;margin-right:auto">$399 to design and launch, then $97/month for hosting, security, and care. No contracts, ever.</p>
+      <p style="font-size:1rem;color:rgba(255,255,255,.78);line-height:1.6;margin-top:10px;max-width:480px;margin-left:auto;margin-right:auto">Plans starting at $399 to design and launch, from $97/month for hosting, security, and care. No contracts, ever.</p>
       <a href="/#contact" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#1d4ed8;font-size:1rem;font-weight:700;padding:14px 26px;border-radius:13px;margin-top:22px;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 10px 24px rgba(0,0,0,.16)" style-hover="transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.26)">Get a Free Quote</a>
     </div>
   </div>
@@ -344,10 +344,10 @@ function renderServicesIndex() {
   <div style="position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 24px;text-align:center">
     <div data-reveal="" style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #e7eaf0;border-radius:100px;padding:6px 14px;font-size:.78rem;font-weight:600;color:#3d4452;box-shadow:0 2px 8px rgba(16,24,40,.04)">
       <span style="display:inline-flex;align-items:center;gap:5px;background:#eef4ff;color:#2563eb;border-radius:100px;padding:3px 9px">Services</span>
-      Everything under one flat plan
+      Every piece, across 3 plans
     </div>
     <h1 data-reveal="" style="font-size:clamp(2.4rem,5.2vw,3.6rem);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin:22px 0 0">Website Design & Marketing Services</h1>
-    <p data-reveal="" style="font-size:clamp(1.05rem,1.5vw,1.15rem);color:#5b6472;line-height:1.65;max-width:620px;margin:20px auto 0">Every one of these is part of the same $399 build + $97/mo care plan — explore the specific piece you're looking for, or <a href="/#pricing" style="color:#2563eb;font-weight:600">see the full package</a>.</p>
+    <p data-reveal="" style="font-size:clamp(1.05rem,1.5vw,1.15rem);color:#5b6472;line-height:1.65;max-width:620px;margin:20px auto 0">Every one of these is part of our Starter, Growth, and Authority plans — explore the specific piece you're looking for, or <a href="/#pricing" style="color:#2563eb;font-weight:600">see the full pricing</a>.</p>
   </div>
 </header>
 <section style="padding:0 0 clamp(72px,9vw,116px)">
@@ -369,7 +369,7 @@ const STANDARD_INCLUDED = [
   `Hosting, security, and backups`,
   `Mobile-first, fast-loading build`,
   `Local SEO and Google Business Profile alignment`,
-  `Ongoing care for $97/mo — no contracts`,
+  `Ongoing care from $97/mo — no contracts`,
 ];
 
 function renderLocationPage(loc) {

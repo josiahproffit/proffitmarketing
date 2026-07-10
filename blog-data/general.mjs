@@ -915,7 +915,7 @@ export const general = [
         "title": "The Flat-Rate Local Model",
         "body": [
           "A newer model has emerged specifically for local businesses: a modest flat fee to design and build a custom (not templated) site, followed by a flat monthly rate that includes hosting, security, and ongoing small updates — no large upfront agency invoice, no DIY learning curve. This tier is built specifically to close the gap between \"too basic\" and \"more than a local business needs.\"",
-          "> Proffit Marketing's model is exactly this: $399 to design and build a custom site, then $97/month for hosting, security, SEO updates, and ongoing care — no contracts."
+          "> Proffit Marketing's model is exactly this: plans start at $399 to design and build a custom site, then from $97/month for hosting, security, SEO updates, and ongoing care — with higher tiers adding more pages, deeper SEO, and lead-generation work. No contracts on any plan."
         ]
       },
       {

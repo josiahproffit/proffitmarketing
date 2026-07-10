@@ -4,7 +4,7 @@ export const locations = [
     city: `Jacksonville`,
     county: `Duval County`,
     seoTitle: `Website Design in Jacksonville, FL | Proffit Marketing`,
-    metaDescription: `Custom website design for Jacksonville, FL small businesses. Flat $399 to launch, $97/mo for hosting and care. Serving Riverside, San Marco, Mandarin, Southside, and beyond.`,
+    metaDescription: `Custom website design for Jacksonville, FL small businesses. Plans starting at $399, from $97/mo for hosting and care. Serving Riverside, San Marco, Mandarin, Southside, and beyond.`,
     tagline: `Custom websites for Jacksonville small businesses, built by someone local.`,
     intro: [
       `Jacksonville is the largest city by area in the continental United States, which also means it's really a collection of very different neighborhoods and business districts — Riverside and Avondale's boutique storefronts, San Marco's walkable square, Mandarin's riverside suburbs, the Southside and Baymeadows office corridor, and Arlington's established residential streets. A website built for a Jacksonville business needs to speak to its specific neighborhood and customer, not just the city as a whole.`,
@@ -24,7 +24,7 @@ export const locations = [
     city: `Jacksonville Beach`,
     county: `Duval County`,
     seoTitle: `Website Design in Jacksonville Beach, FL | Proffit Marketing`,
-    metaDescription: `Website design for Jacksonville Beach businesses — restaurants, shops, and services along the coast. Flat $399 to launch, $97/mo for hosting and care.`,
+    metaDescription: `Website design for Jacksonville Beach businesses — restaurants, shops, and services along the coast. Plans starting at $399, from $97/mo for hosting and care.`,
     tagline: `Built for the businesses that make up The Beaches.`,
     intro: [
       `Jacksonville Beach anchors "The Beaches" area alongside Neptune Beach and Atlantic Beach, with an economy shaped heavily by tourism, restaurants, retail, and beach-adjacent services around the Seawalk Pavilion and Beach Boulevard corridor. Businesses here compete for both loyal locals and a steady flow of visitors, which means a website needs to work for both audiences at once.`,
@@ -94,7 +94,7 @@ export const locations = [
     faq: [
       { q: `Can you build a site that matches a more upscale, premium brand?`, a: `Yes — design and copy are tailored to your specific market, and Ponte Vedra Beach businesses often call for a more polished, premium look.` },
       { q: `Do you work with real estate agents and med spas?`, a: `Yes — both are common client types in the Ponte Vedra Beach area.` },
-      { q: `Is the flat pricing the same for a more premium site?`, a: `Yes — the same flat $399 build and $97/mo care plan applies; design quality isn't reserved for a higher tier.` },
+      { q: `Do I need a higher-tier plan to get a premium-looking site?`, a: `No — even the Starter plan is fully custom-designed, no templates. Growth and Authority add more pages, deeper SEO, and lead-generation work, but design quality isn't reserved for a higher tier.` },
     ],
     relatedBlogSlug: 'local-seo-ponte-vedra-fl',
     relatedIndustrySlugs: ['website-design-for-realtors', 'website-design-for-med-spas'],

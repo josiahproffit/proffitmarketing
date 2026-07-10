@@ -4,7 +4,7 @@ export const services = [
     kicker: 'Website Design',
     title: `Custom Website Design`,
     seoTitle: `Custom Website Design for Jacksonville Small Businesses`,
-    metaDescription: `Custom-built websites for Jacksonville-area small businesses — no templates, no page builders. $399 to design and launch, then $97/mo for hosting and care.`,
+    metaDescription: `Custom-built websites for Jacksonville-area small businesses — no templates, no page builders. Plans starting at $399 to design and launch, from $97/mo for hosting and care.`,
     tagline: `A site built around your business, not a template someone else already used.`,
     intro: [
       `Most "affordable" websites are really a page builder with your logo dropped in — the same layout as a thousand other businesses, just recolored. We design every site from a blank canvas, based on what your business actually does, who your customer is, and what makes you different from the next name in the search results.`,
@@ -26,7 +26,7 @@ export const services = [
     ],
     faq: [
       { q: `How is this different from using Wix or Squarespace myself?`, a: `You are not learning a builder, troubleshooting templates, or writing your own copy. You get a site designed and written for your business, built correctly for SEO, and someone to call when something needs to change — for the same monthly cost as most DIY builder plans.` },
-      { q: `Do I own the website?`, a: `Yes. The site is built on your own domain, and it is yours. There is no long-term contract — the $97/mo covers hosting, security, and ongoing care, and you can cancel anytime.` },
+      { q: `Do I own the website?`, a: `Yes. The site is built on your own domain, and it is yours. There is no long-term contract on any plan — your monthly plan covers hosting, security, and ongoing care, and you can cancel anytime.` },
       { q: `How long does it take to launch?`, a: `Most custom builds go from discovery call to live site in about two weeks, depending on how quickly we get content and feedback back and forth.` },
     ],
     relatedBlogSlugs: ['small-business-website-design-guide', 'how-much-does-a-website-cost', 'website-conversion-optimization-tips'],
@@ -37,7 +37,7 @@ export const services = [
     kicker: 'Website Design',
     title: `Website Redesign Services`,
     seoTitle: `Website Redesign Services | Modernize an Outdated Site`,
-    metaDescription: `Redesign an outdated, slow, or hard-to-manage website without losing your search rankings or content. Flat $399 redesign, then $97/mo for hosting and care.`,
+    metaDescription: `Redesign an outdated, slow, or hard-to-manage website without losing your search rankings or content. Plans starting at $399, from $97/mo for hosting and care.`,
     tagline: `Keep what's working. Fix everything that isn't.`,
     intro: [
       `An old site rarely needs to be thrown out — it needs to be rebuilt properly. We start by reviewing what you already have: what's ranking in Google, what content is actually useful, and what customers are probably bouncing off of. Then we rebuild around that, instead of starting over from zero and losing ground you've already earned.`,
@@ -78,7 +78,7 @@ export const services = [
     ],
     included: [
       `A site sized correctly for a small business — not an over-built platform you'll never fully use`,
-      `Flat $399 to design and launch, $97/mo afterward — no surprise invoices`,
+      `Plans starting at $399 to design and launch, from $97/mo afterward — no surprise invoices`,
       `No long-term contract; cancel anytime`,
       `Direct access to the person who built your site, not a support ticket queue`,
       `Local SEO basics included from the start`,
@@ -87,7 +87,7 @@ export const services = [
     whyItMatters: `A lot of small business owners either overpay for an agency package built for much larger companies, or underinvest in a DIY builder that never quite gets finished. Pricing and process built specifically around a small, local business closes that gap — professional results without enterprise overhead.`,
     process: [
       { title: 'A short discovery call', body: `Usually 20–30 minutes, focused on your business and your customers, not a sales pitch.` },
-      { title: 'A flat quote', body: `$399 to build, $97/mo after launch — no hidden add-ons.` },
+      { title: 'A clear quote', body: `Starter plans from $399 to build, $97/mo after launch — no hidden add-ons.` },
       { title: 'Live in about two weeks', body: `From first call to launched site is typically a couple of weeks.` },
     ],
     faq: [
@@ -103,7 +103,7 @@ export const services = [
     kicker: 'Website Design',
     title: `E-Commerce Website Design`,
     seoTitle: `E-Commerce Website Design for Local Businesses`,
-    metaDescription: `Sell products online with a fast, mobile-friendly store built around your catalog — flat setup fee, then $97/mo for hosting, security, and support.`,
+    metaDescription: `Sell products online with a fast, mobile-friendly store built around your catalog — a setup fee based on your plan, then a monthly plan for hosting, security, and support.`,
     tagline: `A store that's fast, easy to update, and actually sells.`,
     intro: [
       `For a local business, an online store usually doesn't need to compete with Amazon — it needs to let existing and nearby customers buy what you already sell without calling or messaging you first. We build lean, fast product catalogs and checkout flows sized to what you actually carry.`,
@@ -172,7 +172,7 @@ export const services = [
     metaDescription: `Fast, secure website hosting included in every Proffit Marketing plan — no separate hosting bill, no surprise renewal fees.`,
     tagline: `One monthly plan. No separate hosting invoice to track.`,
     intro: [
-      `A lot of small business owners end up paying three different companies for one website — a builder, a domain registrar, and a hosting company — and juggling renewal dates for each. Hosting is included in every site we build, on modern, fast infrastructure, as part of the same $97/mo that covers your care plan.`,
+      `A lot of small business owners end up paying three different companies for one website — a builder, a domain registrar, and a hosting company — and juggling renewal dates for each. Hosting is included in every site we build, on modern, fast infrastructure, as part of the same monthly plan that covers your care plan.`,
       `That also means when something needs attention — a certificate renewal, a server issue, a slow-loading page — there's one place to call, not three separate support lines pointing at each other.`,
     ],
     included: [
@@ -190,7 +190,7 @@ export const services = [
       { title: 'Backed up automatically', body: `Regular backups mean a fix is always possible if something ever breaks.` },
     ],
     faq: [
-      { q: `Do I need to buy hosting separately?`, a: `No — hosting is included in the $97/mo plan alongside every site we build.` },
+      { q: `Do I need to buy hosting separately?`, a: `No — hosting is included in every monthly plan, starting at $97/mo, alongside every site we build.` },
       { q: `What happens if my site goes down?`, a: `Uptime is monitored, and issues are addressed directly — there's no third-party hosting company to file a ticket with.` },
       { q: `Can you host a site you didn't build?`, a: `In most cases yes, after a review — reach out with details about your current site and hosting setup.` },
     ],
@@ -202,7 +202,7 @@ export const services = [
     kicker: 'Care Plan',
     title: `Website Maintenance Plans`,
     seoTitle: `Website Maintenance Plans for Small Businesses`,
-    metaDescription: `Ongoing website maintenance — updates, security patches, backups, and small content edits — included for $97/mo with every site we build.`,
+    metaDescription: `Ongoing website maintenance — updates, security patches, backups, and small content edits — included starting at $97/mo with every site we build.`,
     tagline: `A website is never really "done." Ours don't get left behind.`,
     intro: [
       `A site that isn't maintained slowly drifts out of date — software gets outdated, small errors go unnoticed, and content stops reflecting the business. Maintenance is built into every plan rather than sold as an occasional emergency service, so small issues get caught before they turn into a redesign.`,
@@ -289,7 +289,7 @@ export const services = [
       { title: 'Ongoing review', body: `Local SEO is checked as part of your monthly care plan, not set once and forgotten.` },
     ],
     faq: [
-      { q: `Is local SEO included, or is it a separate service?`, a: `On-page local SEO is included in every website we build and in the $97/mo care plan. Larger local SEO campaigns can be scoped separately.` },
+      { q: `Is local SEO included, or is it a separate service?`, a: `On-page local SEO is included in every website we build and in every monthly care plan. Growth and Authority plans add advanced local SEO and Google Business Profile work on top of the basics.` },
       { q: `Do you also help with my Google Business Profile?`, a: `Yes — we can review and advise on your GBP setup so it's consistent with your website and optimized for your service area.` },
       { q: `How long does local SEO take to show results?`, a: `Local SEO is gradual — most businesses see meaningful movement over a few months, not days, as Google builds confidence in your site and listing.` },
     ],
@@ -346,7 +346,7 @@ export const services = [
       `Security monitoring for suspicious activity`,
       `Software and plugin updates kept current`,
       `A restore plan if something ever does go wrong`,
-      `Included in the $97/mo care plan — no separate security invoice`,
+      `Included in every monthly care plan — no separate security invoice`,
     ],
     whyItMatters: `Outdated software and unpatched plugins are the most common way small business sites get compromised, and a hacked or defaced site can also trigger Google security warnings that scare away visitors and hurt rankings. Preventing that quietly is far cheaper than recovering from it.`,
     process: [
@@ -630,12 +630,12 @@ export const services = [
     slug: 'website-care-plan',
     kicker: 'Care Plan',
     title: `Website Care Plan`,
-    seoTitle: `Website Care Plan | Hosting, Security & Support for $97/mo`,
-    metaDescription: `One monthly plan that covers hosting, security, backups, maintenance, and small edits — so your website never quietly goes stale.`,
-    tagline: `Everything a website needs after launch, in one simple plan.`,
+    seoTitle: `Website Care Plan | Hosting, Security & Support from $97/mo`,
+    metaDescription: `Monthly plans that cover hosting, security, backups, maintenance, and small edits — so your website never quietly goes stale. Starting at $97/mo.`,
+    tagline: `Everything a website needs after launch, built into every plan.`,
     intro: [
-      `Launching a website is the easy part — keeping it fast, secure, current, and actually generating leads over time is where most small business sites quietly fall behind. The care plan bundles everything that ongoing maintenance requires into one flat $97/mo, instead of leaving you to piece it together across different vendors.`,
-      `This is the plan every site we build runs on: hosting, security, backups, small content edits, and a monthly SEO and analytics check-in, all handled without a separate invoice for each.`,
+      `Launching a website is the easy part — keeping it fast, secure, current, and actually generating leads over time is where most small business sites quietly fall behind. Ongoing care is bundled into every plan we offer, starting at $97/mo, instead of leaving you to piece it together across different vendors.`,
+      `This is the plan every site we build runs on: hosting, security, backups, small content edits, and a monthly SEO and analytics check-in are included on Starter, with Growth and Authority adding deeper SEO, content, and lead-generation work on top — all handled without a separate invoice for each.`,
     ],
     included: [
       `Fast, secure hosting`,
@@ -645,15 +645,15 @@ export const services = [
       `Small content edits included`,
       `Monthly SEO and analytics review`,
     ],
-    whyItMatters: `A website is closer to a piece of ongoing infrastructure than a one-time purchase — it needs monitoring, updates, and small adjustments the same way a storefront needs upkeep. Bundling that into one predictable monthly plan means it actually happens, instead of being postponed until something breaks.`,
+    whyItMatters: `A website is closer to a piece of ongoing infrastructure than a one-time purchase — it needs monitoring, updates, and small adjustments the same way a storefront needs upkeep. Bundling that into a predictable monthly plan means it actually happens, instead of being postponed until something breaks.`,
     process: [
-      { title: 'Starts at launch', body: `The care plan begins the moment your site goes live.` },
+      { title: 'Starts at launch', body: `Your care plan begins the moment your site goes live.` },
       { title: 'Runs quietly in the background', body: `Hosting, security, and backups are handled without you needing to think about them.` },
       { title: 'You just ask for changes', body: `Need something updated? Reach out directly — no ticket system, no separate invoice.` },
     ],
     faq: [
-      { q: `What exactly is included in the $97/mo?`, a: `Hosting, SSL, backups, security monitoring, software updates, small content edits, and a monthly SEO/analytics review.` },
-      { q: `Is there a contract?`, a: `No — the plan is month-to-month, and you can cancel anytime.` },
+      { q: `What exactly is included in each plan?`, a: `Every plan includes hosting, SSL, backups, security monitoring, software updates, small content edits, and a monthly SEO/analytics review. Growth adds advanced SEO, Google Business Profile work, and lead tracking; Authority adds ongoing content, review generation, and conversion optimization. See the full pricing breakdown on our homepage.` },
+      { q: `Is there a contract?`, a: `No — every plan is month-to-month, and you can cancel anytime.` },
       { q: `What happens to my site if I cancel?`, a: `The site itself remains yours; hosting, security, and support are tied to an active plan, so you'd need alternative hosting arranged if you cancel.` },
     ],
     relatedBlogSlugs: ['website-maintenance-checklist', 'website-roi-for-small-business'],
