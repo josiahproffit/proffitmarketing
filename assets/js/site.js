@@ -181,6 +181,21 @@
     var validEmail = function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); };
     var get = function (id) { var el = document.getElementById(id); return el ? el.value : ''; };
 
+    // Pricing card "Get started" links can pass ?plan=starter|growth|authority
+    // so the plan dropdown arrives pre-selected instead of defaulting to
+    // "Not sure yet".
+    var planEl = document.getElementById('cf-plan');
+    if (planEl) {
+      var params = new URLSearchParams(window.location.search);
+      var planParam = (params.get('plan') || '').toLowerCase();
+      var planMap = {
+        starter: 'Starter ($399 + $97/mo)',
+        growth: 'Growth ($799 + $147/mo)',
+        authority: 'Authority ($1,499 + $247/mo)'
+      };
+      if (planMap[planParam]) planEl.value = planMap[planParam];
+    }
+
     submitBtn.addEventListener('click', function () {
       var email = get('cf-email').trim();
       var fname = get('cf-name').trim();
@@ -205,6 +220,7 @@
         'Email': email,
         'Phone': get('cf-phone').trim(),
         'Situation': get('cf-situation'),
+        'Plan': get('cf-plan'),
         'Notes': get('cf-notes').trim(),
         _replyto: email
       };
