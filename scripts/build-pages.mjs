@@ -2,7 +2,7 @@
 // Renders /services/<slug>.html + /services/index.html and
 // /locations/<slug>.html + /locations/index.html from page-data/*.mjs,
 // then rewrites sitemap.xml to include every URL on the site (home, blog
-// posts, service pages, location pages). Static HTML output only — no
+// posts, service pages, location pages). Static HTML output only, no
 // client-side router.
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -322,7 +322,7 @@ ${relatedBlogs}
 function renderServicesIndex() {
   const head = headHtml({
     seoTitle: `Website Design & Marketing Services | Proffit Marketing`,
-    metaDescription: `Every service Proffit Marketing offers for Jacksonville-area small businesses — website design, redesigns, e-commerce, local SEO, Google Business Profile management, hosting, and ongoing care.`,
+    metaDescription: `Every service Proffit Marketing offers for Jacksonville-area small businesses, website design, redesigns, e-commerce, local SEO, Google Business Profile management, hosting, and ongoing care.`,
     canonicalPath: `/services/`,
   });
 
@@ -347,7 +347,7 @@ function renderServicesIndex() {
       Every piece, across 3 plans
     </div>
     <h1 data-reveal="" style="font-size:clamp(2.4rem,5.2vw,3.6rem);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin:22px 0 0">Website Design & Marketing Services</h1>
-    <p data-reveal="" style="font-size:clamp(1.05rem,1.5vw,1.15rem);color:#5b6472;line-height:1.65;max-width:620px;margin:20px auto 0">Every one of these is part of our Starter, Growth, and Authority plans — explore the specific piece you're looking for, or <a href="/#pricing" style="color:#2563eb;font-weight:600">see the full pricing</a>.</p>
+    <p data-reveal="" style="font-size:clamp(1.05rem,1.5vw,1.15rem);color:#5b6472;line-height:1.65;max-width:620px;margin:20px auto 0">Every one of these is part of our Starter, Growth, and Authority plans, explore the specific piece you're looking for, or <a href="/#pricing" style="color:#2563eb;font-weight:600">see the full pricing</a>.</p>
   </div>
 </header>
 <section style="padding:0 0 clamp(72px,9vw,116px)">
@@ -369,7 +369,7 @@ const STANDARD_INCLUDED = [
   `Hosting, security, and backups`,
   `Mobile-first, fast-loading build`,
   `Local SEO and Google Business Profile alignment`,
-  `Ongoing care from $97/mo — no contracts`,
+  `Ongoing care from $97/mo, no contracts`,
 ];
 
 function renderLocationPage(loc) {
@@ -459,8 +459,8 @@ ${relatedBits.join('\n')}
 
 function renderLocationsIndex() {
   const head = headHtml({
-    seoTitle: `Service Areas | Proffit Marketing — Northeast Florida`,
-    metaDescription: `Proffit Marketing builds websites for small businesses throughout Northeast Florida — Jacksonville, the Beaches, St. Johns, Clay, and Nassau County communities.`,
+    seoTitle: `Service Areas | Proffit Marketing, Northeast Florida`,
+    metaDescription: `Proffit Marketing builds websites for small businesses throughout Northeast Florida, Jacksonville, the Beaches, St. Johns, Clay, and Nassau County communities.`,
     canonicalPath: `/locations/`,
   });
 

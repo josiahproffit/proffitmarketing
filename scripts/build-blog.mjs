@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 // One-time authoring tool: renders /blog/<slug>.html for every post in
 // blog-data/*.mjs from a shared template, then rewrites blog/index.html's
-// grid and the site's sitemap.xml to match. Output is plain static HTML —
-// this script does not run in the browser and the site has no client-side
+// grid and the site's sitemap.xml to match. Output is plain static HTML, // this script does not run in the browser and the site has no client-side
 // blog engine.
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -31,7 +30,7 @@ const bySlug = new Map(posts.map((p) => [p.slug, p]));
 
 // One consistent brand gradient for every card/hero thumbnail, reusing the
 // exact navy-to-blue gradient already used for the homepage's pricing card
-// and contact section — so blog cards read as part of the same site rather
+// and contact section, so blog cards read as part of the same site rather
 // than each category getting its own color.
 const CARD_GRADIENT = 'linear-gradient(135deg, #102352, #1d4ed8 55%, #3b6ef5)';
 
@@ -389,7 +388,7 @@ ${renderServiceLinks(post)}
     <div style="position:absolute;top:-90px;right:-70px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(91,139,245,.4),transparent 65%)"></div>
     <div style="position:relative">
       <h3 style="font-size:1.5rem;font-weight:800;letter-spacing:-.02em;color:#fff">Ready for a website that actually works for your business?</h3>
-      <p style="font-size:1rem;color:rgba(255,255,255,.78);line-height:1.6;margin-top:10px;max-width:480px;margin-left:auto;margin-right:auto">Proffit Marketing builds fast, custom websites for local businesses in Jacksonville and across Northeast Florida — plans starting at $399, from $97/month to keep it perfect.</p>
+      <p style="font-size:1rem;color:rgba(255,255,255,.78);line-height:1.6;margin-top:10px;max-width:480px;margin-left:auto;margin-right:auto">Proffit Marketing builds fast, custom websites for local businesses in Jacksonville and across Northeast Florida, plans starting at $399, from $97/month to keep it perfect.</p>
       <a href="/#contact" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#1d4ed8;font-size:1rem;font-weight:700;padding:14px 26px;border-radius:13px;margin-top:22px;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 10px 24px rgba(0,0,0,.16)" style-hover="transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.26)">Get a Free Quote</a>
     </div>
   </div>
@@ -537,7 +536,7 @@ function buildIndexHtml() {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Marketing Blog | Proffit Marketing</title>
-<meta name="description" content="Articles on websites, SEO, Google Business Profile optimization, AI, digital marketing, and growing a local business — from the Proffit Marketing team in Jacksonville, FL.">
+<meta name="description" content="Articles on websites, SEO, Google Business Profile optimization, AI, digital marketing, and growing a local business, from the Proffit Marketing team in Jacksonville, FL.">
 <meta name="author" content="Josiah Proffit">
 <link rel="canonical" href="${SITE_URL}/blog/">
 
@@ -547,12 +546,12 @@ function buildIndexHtml() {
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Marketing Blog | Proffit Marketing">
-<meta property="og:description" content="Articles on websites, SEO, Google Business Profile optimization, AI, digital marketing, and growing a local business — from the Proffit Marketing team in Jacksonville, FL.">
+<meta property="og:description" content="Articles on websites, SEO, Google Business Profile optimization, AI, digital marketing, and growing a local business, from the Proffit Marketing team in Jacksonville, FL.">
 <meta property="og:url" content="${SITE_URL}/blog/">
 <meta property="og:image" content="${SITE_URL}/assets/images/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Marketing Blog | Proffit Marketing">
-<meta name="twitter:description" content="Articles on websites, SEO, Google Business Profile optimization, AI, digital marketing, and growing a local business — from the Proffit Marketing team in Jacksonville, FL.">
+<meta name="twitter:description" content="Articles on websites, SEO, Google Business Profile optimization, AI, digital marketing, and growing a local business, from the Proffit Marketing team in Jacksonville, FL.">
 <meta name="twitter:image" content="${SITE_URL}/assets/images/og-image.png">
 
 <link rel="stylesheet" href="/assets/css/style.css">
@@ -598,7 +597,7 @@ function buildIndexHtml() {
       Local business marketing, explained
     </div>
     <h1 data-reveal="" style="font-size:clamp(2.4rem,5.2vw,3.6rem);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin:22px 0 0">Marketing Blog</h1>
-    <p data-reveal="" style="font-size:clamp(1.05rem,1.5vw,1.15rem);color:#5b6472;line-height:1.65;max-width:620px;margin:20px auto 0">Practical articles on websites, SEO, Google Business Profile optimization, AI, digital marketing, and growing a local business — written for owners, not agencies.</p>
+    <p data-reveal="" style="font-size:clamp(1.05rem,1.5vw,1.15rem);color:#5b6472;line-height:1.65;max-width:620px;margin:20px auto 0">Practical articles on websites, SEO, Google Business Profile optimization, AI, digital marketing, and growing a local business, written for owners, not agencies.</p>
   </div>
 </header>
 
@@ -656,7 +655,7 @@ ${sections}
 }
 
 // sitemap.xml is generated by scripts/build-pages.mjs, which also covers
-// /services/ and /locations/ — run that script after this one if both
+// /services/ and /locations/, run that script after this one if both
 // blog and page content changed.
 
 // --- run ---

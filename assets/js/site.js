@@ -143,7 +143,7 @@
     });
   }
 
-  // FAQ accordion — only one entry open at a time.
+  // FAQ accordion, only one entry open at a time.
   function initFaq() {
     var items = Array.prototype.slice.call(document.querySelectorAll('[data-faq]'));
     if (!items.length) return;
@@ -172,7 +172,7 @@
     apply();
   }
 
-  // Contact form — posts to Formspree, matches original validation/UX.
+  // Contact form, posts to Formspree, matches original validation/UX.
   function initContactForm() {
     var submitBtn = document.getElementById('cf-submit');
     if (!submitBtn) return;
