@@ -36,11 +36,30 @@ If you want a custom domain later, add a `CNAME` file containing just your domai
 
 ## Images
 
-Every photo on the site is a styled placeholder (`.img-ph` — a soft pink/blue gradient panel with an icon and caption) rather than a real photo. This keeps the repo dependency-free and avoids broken image links. To finish the site for a real launch:
+Most photo slots are still a styled placeholder (`.img-ph` — a soft pink/blue gradient panel with an icon and caption). Five slots (the ones with the highest visual impact: the homepage hero, the three service preview thumbnails, the "Why Choose Us" photo, and the main image on each of the three service pages, plus About's story photo) are already wired up as real `<img>` tags (`.img-photo`) pointing at filenames below — **drop files with these exact names into `assets/images/` and they'll appear automatically, no code changes needed:**
 
-1. Drop real photos into `assets/images/`.
-2. Replace the relevant `<div class="img-ph ...">...</div>` blocks with `<img src="assets/images/your-photo.jpg" alt="...">`, reusing the descriptive text already in each `.ph-label` as your alt text starting point.
-3. Also replace `assets/images/og-image.jpg` (referenced in every page's Open Graph tags) with a real 1200×630 social-share image.
+| Filename | Used on | Suggested subject |
+|---|---|---|
+| `assets/images/sink-scrubbing.jpg` | Home (services preview), Move In/Out Cleaning | Gloved hands scrubbing a kitchen sink |
+| `assets/images/counter-spray.jpg` | Home (hero, services preview), Deep Cleaning | Spraying/wiping a countertop |
+| `assets/images/mop-floor.jpg` | Home (services preview), Residential Cleaning | Mop + bucket on a floor |
+| `assets/images/faucet-wipe.jpg` | Home (Why Choose Us), About (story) | Wiping a bathroom/kitchen fixture |
+| `assets/images/og-image.jpg` | Every page's Open Graph tag | 1200×630 social-share image |
+
+Any square-format photo works well since these slots use a 1:1 or 16:10 crop (`object-fit: cover` handles the rest). Recommended minimum size: ~1200px on the long edge.
+
+**Remaining placeholders** (team headshots on About, the 5 city photos on Service Areas, and the before/after pairs on the three service pages) are intentionally left as-is — they need different subject matter (real headshots, real Daytona-area photos, genuine dirty-vs-clean pairs) that reused cleaning-action shots wouldn't do justice to. To finish those:
+
+1. Drop the photo into `assets/images/`.
+2. Replace the relevant `<div class="img-ph ...">...</div>` block with:
+   ```html
+   <div class="img-photo ratio-square">
+     <img src="assets/images/your-photo.jpg" alt="..." loading="lazy">
+   </div>
+   ```
+   (swap `ratio-square` for whichever ratio class — `ratio-wide`, `ratio-tall`, `ratio-banner`, or `small` — the placeholder it's replacing used), reusing the text from the placeholder's `.ph-label` as a starting point for your `alt` text.
+
+**Licensing note:** if you're sourcing stock photos, make sure whatever you use is licensed for commercial use. A watermarked preview (e.g. an "Unsplash+" preview you haven't purchased) isn't usable — the watermark won't go away once it's in the page.
 
 ## The contact form
 

@@ -400,6 +400,27 @@ h3 { font-size: clamp(1.2rem, 2.2vw, 1.45rem); }
 .img-ph.small { min-height: 140px; }
 .img-ph.small .ph-icon { max-width: 46px; }
 
+/* ---------- Real photos (same footprint as .img-ph) ---------- */
+.img-photo {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  min-height: 220px;
+  background: linear-gradient(135deg, var(--pink-light), var(--blue-light));
+}
+.img-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.img-photo.ratio-square { aspect-ratio: 1/1; }
+.img-photo.ratio-wide { aspect-ratio: 16/10; }
+.img-photo.ratio-tall { aspect-ratio: 3/4; }
+.img-photo.ratio-banner { aspect-ratio: 21/9; }
+.img-photo.small { min-height: 140px; }
+
 /* ---------- Benefit / Feature grids ---------- */
 .grid { display: grid; gap: 1.75rem; }
 .grid-2 { grid-template-columns: repeat(1, 1fr); }
