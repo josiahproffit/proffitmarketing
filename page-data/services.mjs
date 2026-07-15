@@ -528,39 +528,6 @@ export const services = [
     relatedServiceSlugs: ['conversion-rate-optimization', 'landing-page-design'],
   },
   {
-    slug: 'domain-and-email-setup',
-    kicker: 'Care Plan',
-    title: `Domain & Business Email Setup`,
-    seoTitle: `Domain & Business Email Setup for Small Businesses`,
-    metaDescription: `Get a proper business domain and a professional @yourbusiness.com email address set up correctly, no more @gmail for a real business.`,
-    tagline: `yourname@yourbusiness.com looks like a real business. yourname@gmail.com doesn't.`,
-    intro: [
-      `A surprising number of otherwise professional small businesses are still running on a personal Gmail or Yahoo address, which quietly undercuts the trust a good website is trying to build. Getting a domain and professional email set up correctly is a small, one-time task that makes a lasting difference.`,
-      `We handle the registration, DNS configuration, and email setup so it works correctly the first time, no half-configured domains pointing nowhere, and no email that silently stops delivering.`,
-    ],
-    included: [
-      `Domain registration or transfer handled correctly`,
-      `DNS configured so your website and email both work reliably`,
-      `Professional @yourbusiness.com email address setup`,
-      `Guidance on accessing your new email on your phone and computer`,
-      `Renewal reminders so your domain never accidentally lapses`,
-      `One point of contact if anything needs adjusting later`,
-    ],
-    whyItMatters: `A lapsed domain or broken email can quietly take down your entire online presence and any leads sent to it, often without anyone noticing until a customer mentions their email bounced. Correct setup up front, and someone watching renewal dates, prevents that entirely.`,
-    process: [
-      { title: 'Domain setup', body: `We register or transfer your domain and configure it correctly.` },
-      { title: 'Email configured', body: `Your professional email address is set up and connected to your devices.` },
-      { title: 'Ongoing management', body: `Renewals and DNS are monitored as part of your care plan.` },
-    ],
-    faq: [
-      { q: `I already own a domain. Can you just set up email on it?`, a: `Yes, we can configure email on a domain you already own without needing to move anything else.` },
-      { q: `Will this affect my existing email or contacts?`, a: `No, we configure new business email carefully so it doesn't disrupt anything you're already using.` },
-      { q: `What if my domain is about to expire?`, a: `Let us know as soon as possible, we can help renew it before it lapses and causes downtime.` },
-    ],
-    relatedBlogSlugs: ['website-launch-checklist', 'what-is-a-sitemap-and-why-it-matters'],
-    relatedServiceSlugs: ['website-migration', 'website-hosting'],
-  },
-  {
     slug: 'website-migration',
     kicker: 'Website Design',
     title: `Website Migration`,
@@ -591,7 +558,7 @@ export const services = [
       { q: `Do I get to keep my domain name?`, a: `Yes, your domain moves with you and continues to belong to you.` },
     ],
     relatedBlogSlugs: ['signs-its-time-for-a-website-redesign', 'website-launch-checklist'],
-    relatedServiceSlugs: ['website-redesign-services', 'domain-and-email-setup'],
+    relatedServiceSlugs: ['website-redesign-services'],
   },
   {
     slug: 'contact-form-lead-capture',

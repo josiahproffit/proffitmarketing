@@ -80,7 +80,7 @@ const FAQ_SERVICE_MAP = {
   'how-often-should-i-update-my-website': ['website-maintenance-plans'],
   'what-is-a-sitemap-and-why-it-matters': ['local-seo-services'],
   'website-roi-for-small-business': ['google-analytics-setup'],
-  'website-launch-checklist': ['domain-and-email-setup', 'website-migration'],
+  'website-launch-checklist': ['website-migration'],
 };
 
 function servicesForPost(post) {
