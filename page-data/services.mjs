@@ -273,6 +273,7 @@ export const services = [
     intro: [
       `Local SEO is the set of signals that determine whether your business shows up when someone nearby searches "[service] near me" or "[service] in [city]." It's built into every site from the start, correct on-page structure, consistent business information, and content that actually matches how local customers search, rather than sold as a separate add-on later.`,
       `For businesses that want to go further, we also build dedicated location and service content, and help align your Google Business Profile with your website so both are reinforcing the same information.`,
+      `On-page SEO alone commonly runs hundreds to thousands of dollars a month as a standalone service elsewhere. It's already included in every plan here, no separate SEO retainer to budget for.`,
     ],
     included: [
       `On-page SEO set up correctly on every page, titles, headings, meta descriptions`,
@@ -612,7 +613,7 @@ export const services = [
       `Small content edits included`,
       `Monthly SEO and analytics review`,
     ],
-    whyItMatters: `A website is closer to a piece of ongoing infrastructure than a one-time purchase, it needs monitoring, updates, and small adjustments the same way a storefront needs upkeep. Bundling that into a predictable monthly plan means it actually happens, instead of being postponed until something breaks.`,
+    whyItMatters: `A website is closer to a piece of ongoing infrastructure than a one-time purchase, it needs monitoring, updates, and small adjustments the same way a storefront needs upkeep. Bundling that into a predictable monthly plan means it actually happens, instead of being postponed until something breaks. It's also a better deal than it looks: on-page SEO alone commonly runs hundreds to thousands of dollars a month with other agencies, and it's already factored into your plan, alongside hosting, security, and support you'd otherwise have to piece together (and pay for) yourself.`,
     process: [
       { title: 'Starts at launch', body: `Your care plan begins the moment your site goes live.` },
       { title: 'Runs quietly in the background', body: `Hosting, security, and backups are handled without you needing to think about them.` },
@@ -622,6 +623,7 @@ export const services = [
       { q: `What exactly is included in each plan?`, a: `Every plan includes hosting, SSL, backups, security monitoring, software updates, small content edits, and a monthly SEO/analytics review. Growth adds advanced SEO, Google Business Profile work, and lead tracking; Authority adds ongoing content, review generation, and conversion optimization. See the full pricing breakdown on our homepage.` },
       { q: `Is there a contract?`, a: `No, every plan is month-to-month, and you can cancel anytime.` },
       { q: `What happens to my site if I cancel?`, a: `Your website is part of the managed plan, so it goes offline if you cancel. There's no long-term contract either way; if you'd like to own your site outright instead, we offer a one-time buyout where we rebuild it on WordPress and transfer full ownership to you.` },
+      { q: `Isn't it cheaper to just buy a website once and skip the monthly fee?`, a: `It looks that way upfront, but a one-time build with no ongoing care usually costs more over time once you factor in hosting, security patches, SEO work, and a developer to call when something breaks, all of which are separate line items elsewhere. Here they're already part of your plan, which is why most clients find the monthly cost pays for itself.` },
     ],
     relatedBlogSlugs: ['website-maintenance-checklist', 'website-roi-for-small-business'],
     relatedServiceSlugs: ['website-hosting', 'website-maintenance-plans', 'website-security-backups'],

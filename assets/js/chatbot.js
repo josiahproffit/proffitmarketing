@@ -74,8 +74,13 @@
     {
       id: 'seo',
       keywords: ['seo', 'rank', 'google ranking', 'search engine', 'local seo'],
-      answer: "Yes, local SEO basics are included in every plan, and Growth/Authority add advanced on-page SEO, Google Business Profile optimization, and AI search optimization.",
+      answer: "Yes, on-page SEO is included in every plan, work other agencies bill hundreds to thousands a month for as a separate service. Growth/Authority add advanced SEO, Google Business Profile optimization, and AI search optimization on top.",
       link: { label: 'Local SEO services', href: '/services/local-seo-services.html' },
+    },
+    {
+      id: 'why-monthly',
+      keywords: ['why pay monthly', 'why not just buy', 'cheaper to buy', 'worth it', 'why subscription'],
+      answer: "Because it works out better for you: no large upfront agency invoice, and your plan already includes hosting, security, software updates, and on-page SEO, all things other agencies bill separately for. You never have to find or pay a developer when something breaks, we just fix it.",
     },
     {
       id: 'hosting',
