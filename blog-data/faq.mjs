@@ -326,7 +326,7 @@ export const faq = [
         "id": "control-and-permanence",
         "title": "You Control a Website; You Don't Control a Platform",
         "body": [
-          "A social media platform can change its algorithm, restrict your reach, or in rare cases suspend your account, and there's very little recourse. Your website is yours, you control the design, the content, and who can see it, without a platform's changing rules sitting between you and your customers."
+          "A social media platform can change its algorithm, restrict your reach, or in rare cases suspend your account, and there's very little recourse. A website puts you in control of the design, the content, and who can see it, without a platform's changing rules sitting between you and your customers."
         ]
       },
       {

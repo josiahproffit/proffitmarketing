@@ -1,5 +1,5 @@
 // Lightweight, fully client-side FAQ chat widget. No backend, no API keys,
-// no third-party service — answers are matched by keyword against a small
+// no third-party service, answers are matched by keyword against a small
 // curated knowledge base drawn from the site's real pricing/services
 // content, and anything unmatched falls through to the same Formspree
 // endpoint the main contact form uses, tagged so leads are identifiable.
@@ -41,46 +41,98 @@
     {
       id: 'contract',
       keywords: ['contract', 'cancel', 'commitment', 'lock in', 'month to month'],
-      answer: "No — every plan is month-to-month. No long-term contracts, cancel anytime.",
+      answer: "No, every plan is month-to-month. No long-term contracts, cancel anytime.",
     },
     {
       id: 'ownership',
       keywords: ['own', 'ownership', 'is it mine', 'do i keep'],
-      answer: "Yes. Your site is built on your own domain and it's yours. The monthly plan covers hosting, security, and ongoing care.",
+      answer: "Your website is part of a managed subscription. While you're an active client, we handle hosting, security, updates, and your domain so you don't have to. If you'd like to own the site outright, we offer a one-time buyout, we rebuild it on WordPress and transfer full ownership to you.",
+    },
+    {
+      id: 'buyout',
+      keywords: ['buyout', 'buy out', 'buy the website', 'purchase the website', 'own it outright', 'wordpress'],
+      answer: "Yes, we offer a website buyout option. If you'd like to own your website outright instead of staying on the monthly plan, we rebuild it on WordPress and transfer full ownership to you for a one-time fee of $3,000.",
     },
     {
       id: 'service-area',
       keywords: ['area', 'location', 'jacksonville', 'serve', 'near me', 'city', 'florida', 'st augustine', 'orange park', 'ponte vedra'],
-      answer: "We're based in Jacksonville, FL and serve businesses throughout Northeast Florida — Jacksonville, the Beaches, St. Augustine, Orange Park, Ponte Vedra Beach, Fernandina Beach, and surrounding Duval, St. Johns, Clay, and Nassau County communities.",
+      answer: "We're based in Jacksonville, FL and serve businesses throughout Northeast Florida, Jacksonville, the Beaches, St. Augustine, Orange Park, Ponte Vedra Beach, Fernandina Beach, and surrounding Duval, St. Johns, Clay, and Nassau County communities.",
       link: { label: 'See all service areas', href: '/locations/' },
     },
     {
       id: 'redesign',
       keywords: ['redesign', 'old site', 'update site', 'existing website', 'outdated'],
-      answer: "Yes — we audit your current site first and use proper redirects so your existing Google rankings carry over to the new site.",
+      answer: "Yes, we audit your current site first and use proper redirects so your existing Google rankings carry over to the new site.",
       link: { label: 'Learn about redesigns', href: '/services/website-redesign-services.html' },
     },
     {
       id: 'ecommerce',
       keywords: ['sell', 'store', 'ecommerce', 'e-commerce', 'payment', 'checkout', 'products online', 'shop'],
-      answer: "Yes — payment integration is available starting on the Starter plan, and we build full e-commerce stores with secure checkout for businesses that need a full product catalog.",
+      answer: "Yes, payment integration is available starting on the Starter plan, and we build full e-commerce stores with secure checkout for businesses that need a full product catalog.",
       link: { label: 'E-commerce websites', href: '/services/ecommerce-website-design.html' },
     },
     {
       id: 'seo',
       keywords: ['seo', 'rank', 'google ranking', 'search engine', 'local seo'],
-      answer: "Yes — local SEO basics are included in every plan, and Growth/Authority add advanced on-page SEO, Google Business Profile optimization, and AI search optimization.",
+      answer: "Yes, local SEO basics are included in every plan, and Growth/Authority add advanced on-page SEO, Google Business Profile optimization, and AI search optimization.",
       link: { label: 'Local SEO services', href: '/services/local-seo-services.html' },
     },
     {
       id: 'hosting',
       keywords: ['hosting', 'host', 'security', 'backup', 'ssl'],
-      answer: "Yes — fast, secure hosting, an SSL certificate, security monitoring, and automatic backups are included in every plan. No separate hosting bill.",
+      answer: "Yes, fast, secure hosting, an SSL certificate, security monitoring, and automatic backups are included in every plan. No separate hosting bill.",
     },
     {
       id: 'edits',
       keywords: ['edit', 'update my site', 'change my site', 'myself', 'make changes'],
-      answer: "Small content edits (text, photos, hours, pricing) are included in every plan — just reach out and we'll make the change for you.",
+      answer: "Small content edits (text, photos, hours, pricing) are included in every plan, just reach out and we'll make the change for you. We also check in monthly to see if you'd like any edits or tweaks.",
+    },
+    {
+      id: 'getting-started',
+      keywords: ['what do i need', 'how do i start', 'process', 'what happens after i sign up', 'getting started', 'do i need a domain'],
+      answer: "Just fill out the quote form and we'll call you to talk it through. You don't need a domain, that's included in your plan and we register it for you. Send over your logo and photos if you have them; if not, we offer logo design for $50 (3 options to choose from) or can use stock photos. The more content you already have, the more tailored we can make your site, but it's not required to get started.",
+      link: { label: 'Get a free quote', href: '/#contact' },
+    },
+    {
+      id: 'logo-pricing',
+      keywords: ['logo cost', 'logo price', 'how much is a logo', 'do you make logos', 'logo design cost'],
+      answer: "Yes, logo design is $50 and includes 3 different options to choose from.",
+      link: { label: 'Logo & Brand Identity Design', href: '/services/logo-and-branding.html' },
+    },
+    {
+      id: 'revisions',
+      keywords: ['revisions', 'how many changes', 'design changes', 'rounds of revisions', 'dont like the design'],
+      answer: "We'll send you a rough draft and work through revisions with you until the site matches the agreed-upon vision, no fixed limit on rounds during the design process. Once you're live, we check in monthly for any edits or tweaks.",
+    },
+    {
+      id: 'payment-process',
+      keywords: ['how do i pay', 'payment process', 'when do i pay', 'pay upfront', 'payment method'],
+      answer: "You pay the setup fee upfront via a secure payment link once you approve the design direction. We then collect your content, build the site, and go through revisions. The monthly plan only starts once your site actually goes live, not at signup.",
+    },
+    {
+      id: 'guarantee',
+      keywords: ['guarantee', 'refund', 'money back', 'satisfaction'],
+      answer: "There's no formal money-back guarantee, but we work with you through revisions until the site matches the agreed-upon vision before it launches, and every plan is cancel-anytime with no long-term contract.",
+    },
+    {
+      id: 'upgrade-downgrade',
+      keywords: ['upgrade my plan', 'downgrade', 'switch plans', 'change plans'],
+      answer: "Yes. Upgrades take effect immediately, we build out the extra pages and features and you start paying the higher rate right away. Downgrades take effect at your next billing cycle, and anything beyond the lower plan's limits gets unpublished.",
+    },
+    {
+      id: 'missed-payment',
+      keywords: ['missed payment', 'late payment', 'payment failed', 'site go down if i dont pay'],
+      answer: "You get a 7-day grace period to update your payment method, and your site stays online during that window while we reach out to collect. If payment still isn't received after that, the site may be temporarily suspended until the account is current, then restored promptly once payment goes through.",
+    },
+    {
+      id: 'rush',
+      keywords: ['rush', 'expedited', 'faster turnaround', 'asap', 'sooner'],
+      answer: "Yes, when our schedule allows. Rush builds run about 50% faster than the normal timeline for a $200 fee. It's not guaranteed for every project since it depends on our current workload, but ask and we'll let you know.",
+    },
+    {
+      id: 'platform',
+      keywords: ['wordpress', 'what platform', 'built on', 'locked in', 'technology', 'website builder'],
+      answer: "We build custom sites with modern HTML, CSS, and JavaScript (with AI-assisted development), not bulky themes or page builders, so it's fast and responsive. Your site is fully managed by us while you're on a plan; if you'd rather own it outright, we offer a WordPress buyout option.",
     },
     {
       id: 'contact',
@@ -91,12 +143,12 @@
     {
       id: 'phone',
       keywords: ['phone', 'phone number', 'your number'],
-      answer: "(904) 397-4279 — Mon-Fri, 9-5 ET.",
+      answer: "(904) 397-4279, Mon-Fri, 9-5 ET.",
     },
     {
       id: 'migration',
       keywords: ['wix', 'squarespace', 'godaddy', 'migrate', 'switch platform', 'transfer my site'],
-      answer: "Yes — we can migrate your domain and rebuild your site on faster, more reliable hosting without losing your existing rankings.",
+      answer: "Yes, we can migrate your domain and rebuild your site on faster, more reliable hosting without losing your existing rankings.",
       link: { label: 'Website migration', href: '/services/website-migration.html' },
     },
     {
@@ -119,7 +171,7 @@
     {
       id: 'email',
       keywords: ['email', 'email address'],
-      answer: "josiahproffit@gmail.com — we reply within 24 hours.",
+      answer: "josiahproffit@gmail.com, we reply within 24 hours.",
     },
   ];
 
@@ -130,7 +182,7 @@
     { label: 'How do I get started?', id: 'contact' },
   ];
 
-  var GREETING = "Hi! I'm the Proffit Marketing assistant. Ask me about pricing, timelines, services, or service areas — or tap a question below.";
+  var GREETING = "Hi! I'm the Proffit Marketing assistant. Ask me about pricing, timelines, services, or service areas, or tap a question below.";
   var FALLBACK = "I don't have an exact answer for that yet. Want to leave your name and email so we can follow up personally?";
 
   function normalize(str) {

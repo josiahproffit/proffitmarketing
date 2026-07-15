@@ -16,7 +16,7 @@ export const services = [
       `Mobile-first build, since most local searches happen on a phone`,
       `On-page SEO set up correctly from day one, titles, meta descriptions, headings, schema`,
       `A working contact form connected to your email`,
-      `Launch on your own domain with hosting included`,
+      `Launch on a custom domain with hosting included`,
     ],
     whyItMatters: `A generic template can look fine in a screenshot, but it rarely matches how your specific customers actually decide who to call. A roofer's visitor is scanning for urgency and trust in seconds; a boutique's visitor is browsing and comparing. A site built around your actual business gets both the first impression and the conversion path right, instead of forcing your business to fit someone else's layout.`,
     process: [
@@ -26,7 +26,7 @@ export const services = [
     ],
     faq: [
       { q: `How is this different from using Wix or Squarespace myself?`, a: `You are not learning a builder, troubleshooting templates, or writing your own copy. You get a site designed and written for your business, built correctly for SEO, and someone to call when something needs to change, for the same monthly cost as most DIY builder plans.` },
-      { q: `Do I own the website?`, a: `Yes. The site is built on your own domain, and it is yours. There is no long-term contract on any plan, your monthly plan covers hosting, security, and ongoing care, and you can cancel anytime.` },
+      { q: `Do I own the website?`, a: `Your website is part of a managed subscription. While you're an active client, we handle hosting, security, updates, and your domain so you don't have to. If you'd like to own the site outright, we offer a one-time buyout where we rebuild it on WordPress and transfer full ownership to you. There's no long-term contract either way; you can cancel the monthly plan anytime.` },
       { q: `How long does it take to launch?`, a: `Most custom builds go from discovery call to live site in about two weeks, depending on how quickly we get content and feedback back and forth.` },
     ],
     relatedBlogSlugs: ['small-business-website-design-guide', 'how-much-does-a-website-cost', 'website-conversion-optimization-tips'],
@@ -555,7 +555,7 @@ export const services = [
     faq: [
       { q: `I'm locked into a contract with my current provider. Can you still help?`, a: `We can plan the migration around your contract timeline so it's ready to launch the moment you're free to switch.` },
       { q: `Will I lose my current search rankings?`, a: `Not if it's planned correctly, proper redirects are the key step that prevents ranking loss during a migration.` },
-      { q: `Do I get to keep my domain name?`, a: `Yes, your domain moves with you and continues to belong to you.` },
+      { q: `Do I get to keep my domain name?`, a: `Yes, we handle the transfer so your domain keeps working without interruption.` },
     ],
     relatedBlogSlugs: ['signs-its-time-for-a-website-redesign', 'website-launch-checklist'],
     relatedServiceSlugs: ['website-redesign-services'],
@@ -621,7 +621,7 @@ export const services = [
     faq: [
       { q: `What exactly is included in each plan?`, a: `Every plan includes hosting, SSL, backups, security monitoring, software updates, small content edits, and a monthly SEO/analytics review. Growth adds advanced SEO, Google Business Profile work, and lead tracking; Authority adds ongoing content, review generation, and conversion optimization. See the full pricing breakdown on our homepage.` },
       { q: `Is there a contract?`, a: `No, every plan is month-to-month, and you can cancel anytime.` },
-      { q: `What happens to my site if I cancel?`, a: `The site itself remains yours; hosting, security, and support are tied to an active plan, so you'd need alternative hosting arranged if you cancel.` },
+      { q: `What happens to my site if I cancel?`, a: `Your website is part of the managed plan, so it goes offline if you cancel. There's no long-term contract either way; if you'd like to own your site outright instead, we offer a one-time buyout where we rebuild it on WordPress and transfer full ownership to you.` },
     ],
     relatedBlogSlugs: ['website-maintenance-checklist', 'website-roi-for-small-business'],
     relatedServiceSlugs: ['website-hosting', 'website-maintenance-plans', 'website-security-backups'],
