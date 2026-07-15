@@ -13,25 +13,25 @@
       id: 'pricing',
       keywords: ['price', 'pricing', 'cost', 'how much', 'expensive', 'plans', 'packages', 'rates'],
       answer: "We have three plans: Starter ($399 setup + $97/mo), Growth ($799 setup + $147/mo), and Authority ($1,499 setup + $247/mo). Every plan includes hosting, security, and no long-term contract.",
-      link: { label: 'See full pricing', href: '/#pricing' },
+      link: { label: 'See full pricing', href: '/pricing/' },
     },
     {
       id: 'starter',
       keywords: ['starter', 'basic plan', 'cheapest', 'entry level', 'lowest price'],
       answer: "Starter is $399 setup + $97/month: up to 5 pages, mobile-friendly design, contact form, Google Maps integration, payment integration available, hosting, SSL, security monitoring, backups, speed optimization, SEO & analytics setup, and small content edits anytime.",
-      link: { label: 'See full pricing', href: '/#pricing' },
+      link: { label: 'See full pricing', href: '/pricing/' },
     },
     {
       id: 'growth',
       keywords: ['growth plan', 'growth package', 'most popular'],
       answer: "Growth is $799 setup + $147/month: everything in Starter, plus up to 10 pages, advanced on-page SEO, Google Business Profile optimization, AI search optimization, a blog, lead tracking, and priority support.",
-      link: { label: 'See full pricing', href: '/#pricing' },
+      link: { label: 'See full pricing', href: '/pricing/' },
     },
     {
       id: 'authority',
       keywords: ['authority plan', 'top tier', 'best plan', 'dominate', 'highest plan'],
       answer: "Authority is $1,499 setup + $247/month: everything in Growth, plus unlimited pages, competitor SEO research, 10 SEO blog posts, a review generation system, conversion optimization, custom landing pages, and quarterly strategy calls.",
-      link: { label: 'See full pricing', href: '/#pricing' },
+      link: { label: 'See full pricing', href: '/pricing/' },
     },
     {
       id: 'timeline',
@@ -165,7 +165,7 @@
       id: 'work',
       keywords: ['examples', 'portfolio', 'see your work', 'past work', 'reviews', 'testimonials'],
       answer: "Check out the Our Work section for real sites we've built for local businesses.",
-      link: { label: 'See our work', href: '/#work' },
+      link: { label: 'See our work', href: '/our-work/' },
     },
     {
       id: 'blog',

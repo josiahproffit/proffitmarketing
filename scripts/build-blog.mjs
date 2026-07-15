@@ -308,10 +308,10 @@ ${renderFaqJsonLd(post)}
   <div style="max-width:1200px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px">
     <a href="/" style="font-size:1.35rem;font-weight:800;letter-spacing:-.03em;color:#0e1116">Proffit<span style="color:#2563eb">.</span></a>
     <div data-nav-links="" style="display:flex;gap:36px;align-items:center">
-      <a href="/#services" style="font-size:.92rem;font-weight:500;color:#3d4452">Services</a>
-      <a href="/#work" style="font-size:.92rem;font-weight:500;color:#3d4452">Our Work</a>
-      <a href="/#pricing" style="font-size:.92rem;font-weight:500;color:#3d4452">Pricing</a>
-      <a href="/#faq" style="font-size:.92rem;font-weight:500;color:#3d4452">FAQ</a>
+      <a href="/services/" style="font-size:.92rem;font-weight:500;color:#3d4452">Services</a>
+      <a href="/our-work/" style="font-size:.92rem;font-weight:500;color:#3d4452">Our Work</a>
+      <a href="/pricing/" style="font-size:.92rem;font-weight:500;color:#3d4452">Pricing</a>
+      <a href="/faq/" style="font-size:.92rem;font-weight:500;color:#3d4452">FAQ</a>
       <a href="/blog/" style="font-size:.92rem;font-weight:600;color:#2563eb">Blog</a>
     </div>
     <div style="display:flex;align-items:center;gap:12px">
@@ -322,10 +322,10 @@ ${renderFaqJsonLd(post)}
     </div>
   </div>
   <div id="mobile-menu" style="display:none;border-top:1px solid #eef0f4;padding:10px 24px 18px;flex-direction:column;gap:4px;background:#fff">
-    <a href="/#services" style="padding:10px 4px;font-weight:500;color:#3d4452">Services</a>
-    <a href="/#work" style="padding:10px 4px;font-weight:500;color:#3d4452">Our Work</a>
-    <a href="/#pricing" style="padding:10px 4px;font-weight:500;color:#3d4452">Pricing</a>
-    <a href="/#faq" style="padding:10px 4px;font-weight:500;color:#3d4452">FAQ</a>
+    <a href="/services/" style="padding:10px 4px;font-weight:500;color:#3d4452">Services</a>
+    <a href="/our-work/" style="padding:10px 4px;font-weight:500;color:#3d4452">Our Work</a>
+    <a href="/pricing/" style="padding:10px 4px;font-weight:500;color:#3d4452">Pricing</a>
+    <a href="/faq/" style="padding:10px 4px;font-weight:500;color:#3d4452">FAQ</a>
     <a href="/blog/" style="padding:10px 4px;font-weight:600;color:#2563eb">Blog</a>
   </div>
 </nav>
@@ -425,12 +425,11 @@ ${renderRelated(post)}
       <div>
         <div style="font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px">Explore</div>
         <div style="display:grid;gap:11px">
-          <a href="/#services" style="font-size:.93rem;color:rgba(255,255,255,.7)">Services</a>
-          <a href="/#work" style="font-size:.93rem;color:rgba(255,255,255,.7)">Our Work</a>
-          <a href="/#pricing" style="font-size:.93rem;color:rgba(255,255,255,.7)">Pricing</a>
-          <a href="/#faq" style="font-size:.93rem;color:rgba(255,255,255,.7)">FAQ</a>
+          <a href="/services/" style="font-size:.93rem;color:rgba(255,255,255,.7)">Services</a>
+          <a href="/our-work/" style="font-size:.93rem;color:rgba(255,255,255,.7)">Our Work</a>
+          <a href="/pricing/" style="font-size:.93rem;color:rgba(255,255,255,.7)">Pricing</a>
+          <a href="/faq/" style="font-size:.93rem;color:rgba(255,255,255,.7)">FAQ</a>
           <a href="/blog/" style="font-size:.93rem;color:rgba(255,255,255,.7)">Blog</a>
-          <a href="/services/" style="font-size:.93rem;color:rgba(255,255,255,.7)">All Service Pages</a>
           <a href="/locations/" style="font-size:.93rem;color:rgba(255,255,255,.7)">Service Areas</a>
         </div>
       </div>
@@ -567,10 +566,10 @@ function buildIndexHtml() {
   <div style="max-width:1200px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px">
     <a href="/" style="font-size:1.35rem;font-weight:800;letter-spacing:-.03em;color:#0e1116">Proffit<span style="color:#2563eb">.</span></a>
     <div data-nav-links="" style="display:flex;gap:36px;align-items:center">
-      <a href="/#services" style="font-size:.92rem;font-weight:500;color:#3d4452">Services</a>
-      <a href="/#work" style="font-size:.92rem;font-weight:500;color:#3d4452">Our Work</a>
-      <a href="/#pricing" style="font-size:.92rem;font-weight:500;color:#3d4452">Pricing</a>
-      <a href="/#faq" style="font-size:.92rem;font-weight:500;color:#3d4452">FAQ</a>
+      <a href="/services/" style="font-size:.92rem;font-weight:500;color:#3d4452">Services</a>
+      <a href="/our-work/" style="font-size:.92rem;font-weight:500;color:#3d4452">Our Work</a>
+      <a href="/pricing/" style="font-size:.92rem;font-weight:500;color:#3d4452">Pricing</a>
+      <a href="/faq/" style="font-size:.92rem;font-weight:500;color:#3d4452">FAQ</a>
       <a href="/blog/" style="font-size:.92rem;font-weight:600;color:#2563eb">Blog</a>
     </div>
     <div style="display:flex;align-items:center;gap:12px">
@@ -581,10 +580,10 @@ function buildIndexHtml() {
     </div>
   </div>
   <div id="mobile-menu" style="display:none;border-top:1px solid #eef0f4;padding:10px 24px 18px;flex-direction:column;gap:4px;background:#fff">
-    <a href="/#services" style="padding:10px 4px;font-weight:500;color:#3d4452">Services</a>
-    <a href="/#work" style="padding:10px 4px;font-weight:500;color:#3d4452">Our Work</a>
-    <a href="/#pricing" style="padding:10px 4px;font-weight:500;color:#3d4452">Pricing</a>
-    <a href="/#faq" style="padding:10px 4px;font-weight:500;color:#3d4452">FAQ</a>
+    <a href="/services/" style="padding:10px 4px;font-weight:500;color:#3d4452">Services</a>
+    <a href="/our-work/" style="padding:10px 4px;font-weight:500;color:#3d4452">Our Work</a>
+    <a href="/pricing/" style="padding:10px 4px;font-weight:500;color:#3d4452">Pricing</a>
+    <a href="/faq/" style="padding:10px 4px;font-weight:500;color:#3d4452">FAQ</a>
     <a href="/blog/" style="padding:10px 4px;font-weight:600;color:#2563eb">Blog</a>
   </div>
 </nav>
@@ -626,12 +625,11 @@ ${sections}
       <div>
         <div style="font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px">Explore</div>
         <div style="display:grid;gap:11px">
-          <a href="/#services" style="font-size:.93rem;color:rgba(255,255,255,.7)">Services</a>
-          <a href="/#work" style="font-size:.93rem;color:rgba(255,255,255,.7)">Our Work</a>
-          <a href="/#pricing" style="font-size:.93rem;color:rgba(255,255,255,.7)">Pricing</a>
-          <a href="/#faq" style="font-size:.93rem;color:rgba(255,255,255,.7)">FAQ</a>
+          <a href="/services/" style="font-size:.93rem;color:rgba(255,255,255,.7)">Services</a>
+          <a href="/our-work/" style="font-size:.93rem;color:rgba(255,255,255,.7)">Our Work</a>
+          <a href="/pricing/" style="font-size:.93rem;color:rgba(255,255,255,.7)">Pricing</a>
+          <a href="/faq/" style="font-size:.93rem;color:rgba(255,255,255,.7)">FAQ</a>
           <a href="/blog/" style="font-size:.93rem;color:rgba(255,255,255,.7)">Blog</a>
-          <a href="/services/" style="font-size:.93rem;color:rgba(255,255,255,.7)">All Service Pages</a>
           <a href="/locations/" style="font-size:.93rem;color:rgba(255,255,255,.7)">Service Areas</a>
         </div>
       </div>
