@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sparklehomecleaningdaytona.com/sitemap.xml
+Sitemap: https://ameliashinecleaning.com/sitemap.xml

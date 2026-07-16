@@ -1,6 +1,6 @@
-# Sparkle Home Cleaning — Website
+# Amelia Shine Cleaning Services — Website
 
-A fictional residential cleaning company website for Daytona Beach, FL, built as a portfolio demo. Static HTML/CSS/JS, no build step, no dependencies.
+A residential and commercial cleaning company website for Amelia Shine Cleaning Services, serving Amelia Island, FL and Nassau County. Static HTML/CSS/JS, no build step, no dependencies.
 
 ## What's inside
 
@@ -12,7 +12,7 @@ sparkle-home-cleaning/
 ├── deep-cleaning.html               Service page
 ├── move-in-move-out-cleaning.html   Service page
 ├── pricing.html                     Packages (no prices, quote-based)
-├── service-areas.html               Daytona Beach, Ormond Beach, Port Orange, Holly Hill, South Daytona
+├── service-areas.html               Amelia Island, Ormond Beach, Port Orange, Holly Hill, South Amelia Island
 ├── faq.html                         ~17 FAQs with FAQPage schema
 ├── contact.html                     Full quote request form
 ├── 404.html
@@ -32,7 +32,7 @@ sparkle-home-cleaning/
 4. In the repo, go to **Settings → Pages**, set the source to the `main` branch, root folder, and save.
 5. Your site will publish at `https://<your-username>.github.io/<repo-name>/`.
 
-If you want a custom domain later, add a `CNAME` file containing just your domain name, and update `<link rel="canonical">`, the Open Graph `og:url` tags, the JSON-LD schema `url`/`@id` fields, `sitemap.xml`, and `robots.txt` to match your real domain (they currently all point to the placeholder `https://sparklehomecleaningdaytona.com`).
+If you want a custom domain later, add a `CNAME` file containing just your domain name, and update `<link rel="canonical">`, the Open Graph `og:url` tags, the JSON-LD schema `url`/`@id` fields, `sitemap.xml`, and `robots.txt` to match your real domain (they currently all point to the placeholder `https://ameliashinecleaning.com`).
 
 ## Images
 
