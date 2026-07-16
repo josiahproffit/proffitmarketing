@@ -101,8 +101,32 @@
     {
       id: 'getting-started',
       keywords: ['what do i need', 'how do i start', 'process', 'what happens after i sign up', 'getting started', 'do i need a domain'],
-      answer: "Just fill out the quote form and we'll call you to talk it through. You don't need a domain, that's included in your plan and we register it for you. Send over your logo and photos if you have them; if not, we offer logo design for $50 (3 options to choose from) or can use stock photos. The more content you already have, the more tailored we can make your site, but it's not required to get started.",
-      link: { label: 'Get a free quote', href: '/#contact' },
+      answer: "Just fill out the quote form and we'll call you to talk it through. You don't need a domain, that's included in your plan and we register it for you. Send over your logo and photos if you have them; if not, we offer logo design for $50 (3 options to choose from) or can use stock photos. The more content you already have, the more tailored we can make your site, but it's not required to get started. Want me to grab your info right now so Josiah can call you?",
+      showForm: true,
+      formButtonLabel: 'Get my free quote',
+    },
+    {
+      id: 'book-consultation',
+      keywords: [
+        'book', 'booking', 'book a call', 'book a consultation', 'book an appointment', 'schedule', 'schedule a call',
+        'schedule a consultation', 'set up a call', 'set up a time', 'consultation', 'appointment', 'speak with someone',
+        'can we talk', 'can i talk to you', 'can i talk to josiah', 'talk to josiah',
+      ],
+      answer: "Happy to help you get that booked. Drop your name and email below and Josiah will personally reach out to schedule a quick call.",
+      showForm: true,
+      formButtonLabel: 'Book my consultation',
+    },
+    {
+      id: 'ready-to-start',
+      keywords: [
+        "let's do it", 'lets do it', "i'm ready", 'im ready', 'i am ready', 'sign me up', 'sounds good',
+        "let's go", 'lets go', 'i want a website', 'i need a website', 'get me a website', 'build me a website',
+        'i want in', "i'm interested", 'im interested', 'yes please', "let's get started", 'lets get started',
+        'help me get a website', 'help me get started', 'help me book', 'i need help getting started',
+      ],
+      answer: "Love it, let's make it happen! Drop your name and email below and Josiah will reach out to get things moving.",
+      showForm: true,
+      formButtonLabel: "Let's get started",
     },
     {
       id: 'logo-pricing',
@@ -147,9 +171,11 @@
     },
     {
       id: 'contact',
-      keywords: ['contact', 'quote', 'get started', 'talk to someone', 'call you', 'hire you', 'sign up'],
-      answer: "Fill out the quote form and we'll set up a quick discovery call to talk through your business.",
+      keywords: ['contact', 'quote', 'get started', 'talk to someone', 'call you', 'hire you', 'sign up', 'i need a quote'],
+      answer: "Happy to help. Drop your name and email below and Josiah will personally reach out, or fill out the full quote form if you'd rather.",
       link: { label: 'Get a free quote', href: '/#contact' },
+      showForm: true,
+      formButtonLabel: 'Get my free quote',
     },
     {
       id: 'phone',
@@ -208,8 +234,8 @@
       var entry = FAQ_DATA[i];
       var score = 0;
       for (var j = 0; j < entry.keywords.length; j++) {
-        var kw = entry.keywords[j];
-        if (norm.indexOf(kw) !== -1) score += kw.split(' ').length;
+        var kw = normalize(entry.keywords[j]);
+        if (kw && norm.indexOf(kw) !== -1) score += kw.split(' ').length;
       }
       if (score > bestScore) {
         bestScore = score;
@@ -264,6 +290,7 @@
     var isOpen = sessionStorage.getItem(OPEN_KEY) === '1';
     var showLeadForm = false;
     var lastUnansweredQuestion = '';
+    var leadFormButtonLabel = 'Send my question';
 
     // ---------- Bubble ----------
     var bubble = el(
@@ -381,7 +408,7 @@
         '<div id="pf-lead-form" style="background:#fafbfc;border:1px solid #eef0f4;border-radius:14px;padding:14px;display:grid;gap:8px">' +
         '<input id="pf-lead-name" type="text" placeholder="Your name" style="padding:9px 12px;border:1px solid #e4e7ee;border-radius:9px;font-family:inherit;font-size:.85rem;outline:none">' +
         '<input id="pf-lead-email" type="email" placeholder="Your email" style="padding:9px 12px;border:1px solid #e4e7ee;border-radius:9px;font-family:inherit;font-size:.85rem;outline:none">' +
-        '<button id="pf-lead-submit" style="background:#2563eb;color:#fff;border:none;padding:10px;border-radius:9px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:inherit">Send my question</button>' +
+        '<button id="pf-lead-submit" style="background:#2563eb;color:#fff;border:none;padding:10px;border-radius:9px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:inherit">' + escapeHtml(leadFormButtonLabel) + '</button>' +
         '</div>'
       );
     }
@@ -444,7 +471,7 @@
           body: JSON.stringify({
             'First Name': name,
             Email: email,
-            Question: lastUnansweredQuestion,
+            Message: lastUnansweredQuestion,
             Source: 'Chatbot widget',
             _replyto: email,
           }),
@@ -452,7 +479,7 @@
           .then(function (res) {
             showLeadForm = false;
             if (res.ok) {
-              log.push({ role: 'bot', text: "Thanks, " + name + "! We got your question and will reply within 24 hours." });
+              log.push({ role: 'bot', text: "Thanks, " + name + "! We've got your info and will follow up within 24 hours." });
             } else {
               log.push({ role: 'bot', text: "Something went wrong sending that. Feel free to call us at (904) 397-4279 instead." });
             }
@@ -471,10 +498,16 @@
       var match = matchedEntry || findBestMatch(text);
       if (match) {
         log.push({ role: 'bot', text: match.answer, link: match.link });
+        if (match.showForm) {
+          lastUnansweredQuestion = text;
+          showLeadForm = true;
+          leadFormButtonLabel = match.formButtonLabel || 'Book my consultation';
+        }
       } else {
         lastUnansweredQuestion = text;
         log.push({ role: 'bot', text: FALLBACK });
         showLeadForm = true;
+        leadFormButtonLabel = 'Send my question';
       }
       render();
     }
