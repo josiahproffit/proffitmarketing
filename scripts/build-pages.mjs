@@ -209,12 +209,12 @@ const HOW_IT_WORKS = `<section style="padding:clamp(72px,9vw,116px) 0;background
 function headHtml({ seoTitle, metaDescription, canonicalPath, ogType = 'website', jsonLd = [] }) {
   const canonical = `${SITE_URL}${canonicalPath}`;
   return `<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ENQBQ14V19"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXS8FD7DB6"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-ENQBQ14V19');
+  gtag('config', 'G-XXS8FD7DB6');
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
