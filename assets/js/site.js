@@ -191,7 +191,8 @@
       var planMap = {
         starter: 'Starter ($399 + $97/mo)',
         growth: 'Growth ($799 + $147/mo)',
-        authority: 'Authority ($1,499 + $247/mo)'
+        authority: 'Authority ($1,499 + $247/mo)',
+        'ai-chatbot': 'AI Website Chatbot ($149 + $49/mo)'
       };
       if (planMap[planParam]) planEl.value = planMap[planParam];
     }

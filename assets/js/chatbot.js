@@ -78,6 +78,12 @@
       link: { label: 'Local SEO services', href: '/services/local-seo-services.html' },
     },
     {
+      id: 'ai-chatbot',
+      keywords: ['chatbot', 'ai chatbot', 'get this chatbot', 'chatbot for my business', 'ai assistant for my website', 'chat bot', 'get a chatbot', 'ai employee'],
+      answer: "You're actually talking to it right now. The AI Website Chatbot is $149 one-time setup and $49/month, and it's trained specifically on your business so it can answer questions, capture leads, and book appointments 24/7, even after you close for the day. It can be added to any plan.",
+      link: { label: 'AI Website Chatbot', href: '/services/ai-website-chatbot.html' },
+    },
+    {
       id: 'why-monthly',
       keywords: ['why pay monthly', 'why not just buy', 'cheaper to buy', 'worth it', 'why subscription'],
       answer: "Because it works out better for you: no large upfront agency invoice, and your plan already includes hosting, security, software updates, and on-page SEO, all things other agencies bill separately for. You never have to find or pay a developer when something breaks, we just fix it.",

@@ -273,17 +273,76 @@ function heroBlock(label) {
     </div>`;
 }
 
-function ctaBlock() {
+function ctaBlock(heading, body, buttonText, href) {
+  const h = heading || 'Ready for a website that actually works for your business?';
+  const b = body || 'Plans starting at $399 to design and launch, from $97/month for hosting, security, and care. No contracts, ever.';
+  const bt = buttonText || 'Get a Free Quote';
+  const hr = href || '/#contact';
   return `<div style="max-width:820px;margin:0 auto;padding:0 24px clamp(56px,7vw,80px)">
   <div style="position:relative;background:linear-gradient(155deg,#0f1b3d,#142a63 55%,#1d4ed8);border-radius:24px;padding:clamp(28px,4vw,40px);overflow:hidden;box-shadow:0 24px 54px rgba(16,30,80,.28);text-align:center">
     <div style="position:absolute;top:-90px;right:-70px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(91,139,245,.4),transparent 65%)"></div>
     <div style="position:relative">
-      <h3 style="font-size:1.5rem;font-weight:800;letter-spacing:-.02em;color:#fff">Ready for a website that actually works for your business?</h3>
-      <p style="font-size:1rem;color:rgba(255,255,255,.78);line-height:1.6;margin-top:10px;max-width:480px;margin-left:auto;margin-right:auto">Plans starting at $399 to design and launch, from $97/month for hosting, security, and care. No contracts, ever.</p>
-      <a href="/#contact" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#1d4ed8;font-size:1rem;font-weight:700;padding:14px 26px;border-radius:13px;margin-top:22px;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 10px 24px rgba(0,0,0,.16)" style-hover="transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.26)">Get a Free Quote</a>
+      <h3 style="font-size:1.5rem;font-weight:800;letter-spacing:-.02em;color:#fff">${esc(h)}</h3>
+      <p style="font-size:1rem;color:rgba(255,255,255,.78);line-height:1.6;margin-top:10px;max-width:480px;margin-left:auto;margin-right:auto">${esc(b)}</p>
+      <a href="${hr}" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#1d4ed8;font-size:1rem;font-weight:700;padding:14px 26px;border-radius:13px;margin-top:22px;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 10px 24px rgba(0,0,0,.16)" style-hover="transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.26)">${esc(bt)}</a>
     </div>
   </div>
 </div>`;
+}
+
+function renderPricingCard(svc) {
+  const pc = svc.pricingCard;
+  const includesHtml = pc.includes
+    .map(
+      (item) => `<div style="display:flex;gap:9px;align-items:flex-start;font-size:.89rem;color:#fff"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9fc0ff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><path d="M20 6L9 17l-5-5"></path></svg>${esc(item)}</div>`
+    )
+    .join('\n');
+  return `
+  <div data-reveal="" style="position:relative;max-width:420px;margin:36px auto;background:linear-gradient(160deg,#102352,#1d4ed8 55%,#3b6ef5);border-radius:24px;padding:clamp(28px,3vw,34px);box-shadow:0 30px 70px rgba(29,78,216,.34);overflow:hidden">
+    <div style="position:absolute;top:-90px;right:-70px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 65%);pointer-events:none"></div>
+    <div style="position:relative">
+      <div style="font-size:.82rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#bcd2ff">${esc(pc.name || svc.title)}</div>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-top:14px">
+        <span style="font-size:2.2rem;font-weight:800;letter-spacing:-.03em;color:#fff">${esc(pc.price)}</span>
+      </div>
+      <div style="font-size:.85rem;color:rgba(255,255,255,.65);font-weight:600;margin-top:2px">${esc(pc.priceNote)}</div>
+      <p style="font-size:.92rem;color:rgba(255,255,255,.78);line-height:1.6;margin-top:14px">${esc(pc.description)}</p>
+      <div style="height:1px;background:rgba(255,255,255,.16);margin:22px 0"></div>
+      <div style="font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:14px">Includes</div>
+      <div style="display:grid;gap:11px">${includesHtml}</div>
+      <a href="${pc.buttonHref || '/#contact'}" style="display:block;text-align:center;background:#fff;color:#1d4ed8;font-size:.95rem;font-weight:700;padding:14px;border-radius:13px;margin-top:26px;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 10px 24px rgba(0,0,0,.16)" style-hover="transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.26)">${esc(pc.buttonText || 'Get started')}</a>
+    </div>
+  </div>`;
+}
+
+function renderDemoBlock(demo) {
+  return `
+  <div data-reveal="" style="background:linear-gradient(155deg,#eef4ff,#f5f8ff);border:1px solid #dbe4f5;border-radius:20px;padding:clamp(24px,3vw,32px);margin:36px 0;text-align:center">
+    <div style="display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#2563eb;background:#fff;padding:6px 12px;border-radius:100px;margin-bottom:16px;box-shadow:0 2px 8px rgba(16,24,40,.06)">${esc(demo.title)}</div>
+    <p style="font-size:1rem;color:#3d4452;line-height:1.7;max-width:560px;margin:0 auto">${esc(demo.body)}</p>
+    <button type="button" onclick="var b=document.getElementById('pf-chat-bubble');if(b)b.click();" style="display:inline-flex;align-items:center;gap:8px;background:#2563eb;color:#fff;font-size:.95rem;font-weight:700;padding:13px 24px;border-radius:12px;margin-top:20px;border:none;cursor:pointer;font-family:inherit;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 10px 24px rgba(37,99,235,.28)" style-hover="transform:translateY(-2px);box-shadow:0 16px 34px rgba(37,99,235,.36)">Chat with our AI assistant</button>
+  </div>`;
+}
+
+function renderBenefitsGrid(benefits) {
+  const cards = benefits
+    .map(
+      (b) => `
+      <div data-reveal="" style="background:#fafbfc;border:1px solid #eef0f4;border-radius:18px;padding:26px;transition:transform .25s ease,box-shadow .25s ease" style-hover="transform:translateY(-4px);box-shadow:0 16px 38px rgba(16,24,40,.08)">
+        <div style="width:44px;height:44px;border-radius:12px;background:#fff;border:1px solid #e7eaf0;display:flex;align-items:center;justify-content:center;margin-bottom:16px"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${b.icon}</svg></div>
+        <h3 style="font-size:1.06rem;font-weight:700;margin-bottom:7px">${esc(b.title)}</h3>
+        <p style="font-size:.92rem;color:#6b7280;line-height:1.6">${esc(b.body)}</p>
+      </div>`
+    )
+    .join('\n');
+  return `<section style="padding:clamp(56px,7vw,80px) 0 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px">
+    <div data-reveal="" style="text-align:center;max-width:640px;margin:0 auto 40px">
+      <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;letter-spacing:-.02em">Why businesses love it</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px">${cards}</div>
+  </div>
+</section>`;
 }
 
 function relatedCard(href, kicker, title) {
@@ -372,6 +431,13 @@ function renderServicePage(svc) {
     })
     .join('\n');
 
+  const pricingCardHtml = svc.pricingCard ? renderPricingCard(svc) : '';
+  const demoHtml = svc.demo ? renderDemoBlock(svc.demo) : '';
+  const benefitsHtml = svc.benefits ? renderBenefitsGrid(svc.benefits) : '';
+  const finalCta = svc.ctaOverride
+    ? ctaBlock(svc.ctaOverride.heading, svc.ctaOverride.body, svc.ctaOverride.buttonText, svc.ctaOverride.href)
+    : ctaBlock();
+
   const body = `
 <article>
 <header style="padding:clamp(40px,6vw,64px) 0 0">
@@ -396,7 +462,7 @@ function renderServicePage(svc) {
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px 22px;margin:20px 0 32px">
           ${includedHtml}
   </div>
-
+${pricingCardHtml}${demoHtml}
   <h2>Why it matters</h2>
   <p>${esc(svc.whyItMatters)}</p>
 
@@ -408,7 +474,7 @@ function renderServicePage(svc) {
 ${processHtml}
   </div>
 </div>
-
+${benefitsHtml}
 <div style="max-width:820px;margin:clamp(48px,6vw,72px) auto 0;padding:0 24px">
   <h2 style="font-size:1.6rem;font-weight:800;letter-spacing:-.02em;margin-bottom:20px">Frequently asked questions</h2>
   <div style="display:grid;gap:12px">
@@ -416,7 +482,7 @@ ${faqHtml(svc.faq)}
   </div>
 </div>
 
-${ctaBlock()}
+${finalCta}
 </article>
 
 <section style="padding:0 0 clamp(72px,9vw,116px);background:#fafbfc;border-top:1px solid #f0f1f5">
