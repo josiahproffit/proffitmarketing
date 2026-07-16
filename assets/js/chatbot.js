@@ -1,19 +1,37 @@
-// Lightweight, fully client-side FAQ chat widget. No backend, no API keys,
-// no third-party service, answers are matched by keyword against a small
-// curated knowledge base drawn from the site's real pricing/services
-// content, and anything unmatched falls through to the same Formspree
-// endpoint the main contact form uses, tagged so leads are identifiable.
+// Lightweight, fully client-side sales-assistant chat widget. No backend,
+// no API keys, no third-party AI service. Knowledge is drawn from every
+// page of the real site (services, pricing, FAQ, policies). Intent is
+// classified in two stages: a small rule-based router disambiguates the
+// cases that plain keyword scoring gets wrong (chatbot pricing vs website
+// pricing, industry statements), then a keyword-scored lookup across
+// FAQ_DATA handles everything else. Anything unmatched, or any message
+// that signals real buying intent, surfaces the same Formspree-backed
+// lead form the main contact form uses, tagged so leads are identifiable.
 (function () {
   'use strict';
 
   var FORMSPREE_URL = 'https://formspree.io/f/mojbnkjb';
 
+  function normalize(str) {
+    return (str || '').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  function hasAny(norm, words) {
+    for (var i = 0; i < words.length; i++) {
+      if (norm.indexOf(normalize(words[i])) !== -1) return true;
+    }
+    return false;
+  }
+
   var FAQ_DATA = [
     {
       id: 'pricing',
       keywords: ['price', 'pricing', 'cost', 'how much', 'expensive', 'plans', 'packages', 'rates'],
-      answer: "We have three plans: Starter ($399 setup + $97/mo), Growth ($799 setup + $147/mo), and Authority ($1,499 setup + $247/mo). Every plan includes hosting, security, and no long-term contract.",
+      answer:
+        "We have three website plans:\n• Starter, $399 setup + $97/mo\n• Growth, $799 setup + $147/mo\n• Authority, $1,499 setup + $247/mo\n\nEvery plan includes hosting, security, and no long-term contract. The AI Chatbot is a separate add-on, $149 setup + $49/mo, if you want that too.",
       link: { label: 'See full pricing', href: '/pricing/' },
+      showForm: true,
+      formButtonLabel: 'Get a personalized quote',
     },
     {
       id: 'starter',
@@ -32,6 +50,38 @@
       keywords: ['authority plan', 'top tier', 'best plan', 'dominate', 'highest plan'],
       answer: "Authority is $1,499 setup + $247/month: everything in Growth, plus unlimited pages, competitor SEO research, 10 SEO blog posts, a review generation system, conversion optimization, custom landing pages, and quarterly strategy calls.",
       link: { label: 'See full pricing', href: '/pricing/' },
+    },
+    {
+      id: 'chatbot-pricing',
+      keywords: ['chatbot pricing', 'chatbot cost', 'chatbot price', 'cost of the chatbot', 'price of the chatbot'],
+      answer:
+        "AI Chatbot Pricing\n\n• $149 one-time setup\n• $49/month managed hosting\n\nIncluded:\n• AI chatbot installation\n• Hosting\n• Ongoing maintenance\n• Knowledge updates when needed\n• Reliable uptime\n• Support\n\nIt can be added on its own or paired with any website plan.",
+      link: { label: 'AI Website Chatbot', href: '/services/ai-website-chatbot.html' },
+      showForm: true,
+      formButtonLabel: 'Get my AI chatbot',
+    },
+    {
+      id: 'bundle-pricing',
+      keywords: ['website and chatbot price', 'website and the chatbot cost'],
+      answer:
+        "The AI Chatbot stacks on top of any website plan, just add $149 to the setup fee and $49 to the monthly fee. For example: Starter + Chatbot is $548 setup, then $146/month total. Same math works with Growth or Authority, tell me which plan you're considering and I'll do the exact numbers.",
+      link: { label: 'See full pricing', href: '/pricing/' },
+      showForm: true,
+      formButtonLabel: 'Get a personalized quote',
+    },
+    {
+      id: 'chatbot-features',
+      keywords: [
+        'what does the chatbot include', 'what does the ai chatbot include', "what's included with the chatbot",
+        'whats included with the chatbot', 'chatbot features', 'what comes with the chatbot', 'what does the chatbot do',
+        'what features does the chatbot have', 'what features does the ai chatbot have', 'features of the chatbot',
+        'features of the ai chatbot', 'what are the chatbot features',
+      ],
+      answer:
+        "The AI Chatbot includes:\n• AI chatbot installation\n• Full customization for your business\n• A lead intake form built right into the chat\n• Booking and consultation intake when appropriate\n• A business FAQ knowledge base, like this one\n• Objection handling for common customer concerns\n• 24/7 lead capture, even when you're closed\n• Ongoing hosting and maintenance\n\nIt's built to answer questions instantly and catch leads you'd otherwise miss, and it works even better paired with one of our managed website plans.",
+      link: { label: 'AI Website Chatbot', href: '/services/ai-website-chatbot.html' },
+      showForm: true,
+      formButtonLabel: 'Get my AI chatbot',
     },
     {
       id: 'timeline',
@@ -61,9 +111,26 @@
     },
     {
       id: 'redesign',
-      keywords: ['redesign', 'old site', 'update site', 'existing website', 'outdated'],
-      answer: "Yes, we audit your current site first and use proper redirects so your existing Google rankings carry over to the new site.",
+      keywords: ['redesign', 'old site', 'update site', 'existing website', 'outdated', 'site is outdated', 'website is old', 'site looks old'],
+      answer: "Yes, that's one of our most common projects. We audit your current site first and use proper redirects so your existing Google rankings carry over to the new one. What bothers you most about it right now, how it looks, how slow it is, or that it's just not bringing in leads?",
       link: { label: 'Learn about redesigns', href: '/services/website-redesign-services.html' },
+    },
+    {
+      id: 'more-customers',
+      keywords: ['need more customers', 'get more customers', 'more leads', 'more clients', 'grow my business', 'increase sales', 'get more business', "i'm not getting enough leads", 'not getting enough leads'],
+      answer: "Happy to help with that. A couple quick questions: do you already have a website, and when people find you online right now, do they usually call, text, or fill out a form? That'll help point you toward the right fix, whether it's a new site, stronger SEO, or the AI chatbot catching leads after hours.",
+    },
+    {
+      id: 'text-me',
+      keywords: ['want people to text me', 'people to text me', 'customers to text me', 'let people text me', 'text me instead of calling', 'want a text option', 'let customers text'],
+      answer: "The AI Chatbot is built for exactly that, it sits on your site so visitors can message you anytime, even after hours, and it captures their info as a lead automatically. Want details on the chatbot, or were you thinking of SMS/text messaging specifically?",
+      link: { label: 'AI Website Chatbot', href: '/services/ai-website-chatbot.html' },
+    },
+    {
+      id: 'not-on-google',
+      keywords: ["isn't showing on google", 'not showing on google', 'not showing up on google', "can't find my business on google", 'cant find my business on google', 'not ranking', 'not on google', 'not on the first page', "don't show up on google", 'dont show up on google'],
+      answer: "That's usually a mix of two things: your Google Business Profile setup and your website's on-page SEO. Both are included starting on our Growth plan, and we also offer standalone Google Business Profile management. Do you already have a Google Business Profile claimed, or are you starting from scratch?",
+      link: { label: 'Google Business Profile management', href: '/services/google-business-profile-management.html' },
     },
     {
       id: 'ecommerce',
@@ -80,13 +147,18 @@
     {
       id: 'ai-chatbot',
       keywords: ['chatbot', 'ai chatbot', 'get this chatbot', 'chatbot for my business', 'ai assistant for my website', 'chat bot', 'get a chatbot', 'ai employee'],
-      answer: "You're actually talking to it right now. The AI Website Chatbot is $149 one-time setup and $49/month, and it's trained specifically on your business so it can answer questions, capture leads, and book appointments 24/7, even after you close for the day. It can be added to any plan.",
+      answer: "You're actually talking to it right now. The AI Website Chatbot is $149 one-time setup and $49/month, and it's trained specifically on your business so it can answer questions, capture leads, and book appointments 24/7, even after you close for the day. It works as a standalone add-on, but it performs best paired with one of our managed website plans, since we can integrate it seamlessly and keep everything running together.",
       link: { label: 'AI Website Chatbot', href: '/services/ai-website-chatbot.html' },
     },
     {
       id: 'why-monthly',
-      keywords: ['why pay monthly', 'why not just buy', 'cheaper to buy', 'worth it', 'why subscription'],
-      answer: "Because it works out better for you: no large upfront agency invoice, and your plan already includes hosting, security, software updates, and on-page SEO, all things other agencies bill separately for. You never have to find or pay a developer when something breaks, we just fix it.",
+      keywords: [
+        'why pay monthly', 'why not just buy', 'cheaper to buy', 'worth it', 'why subscription', 'why is hosting monthly',
+        'why is there a monthly fee', 'what does the monthly payment cover', 'what does the monthly fee cover',
+        'why monthly fee', 'whats the monthly fee for', "what's the monthly fee for", 'why do i have to pay monthly',
+      ],
+      answer:
+        "We don't just build a site and disappear, a business website needs ongoing attention to actually perform. Google tends to favor sites that stay active: regular updates and fresh content signal that a business is active, even something as small as publishing a blog post helps. Your monthly plan covers that work, SEO upkeep, security, backups, and content updates, plus hosting and support, so you're never stuck finding a developer when something breaks. We can't promise specific rankings, nobody honestly can, but landing even one extra customer from better visibility usually covers the monthly cost several times over.",
     },
     {
       id: 'hosting',
@@ -110,9 +182,10 @@
       keywords: [
         'book', 'booking', 'book a call', 'book a consultation', 'book an appointment', 'schedule', 'schedule a call',
         'schedule a consultation', 'set up a call', 'set up a time', 'consultation', 'appointment', 'speak with someone',
-        'can we talk', 'can i talk to you', 'can i talk to josiah', 'talk to josiah',
+        'can we talk', 'can i talk to you', 'can i talk to josiah', 'talk to josiah', 'can someone call me',
+        'can you call me', 'have someone call me',
       ],
-      answer: "Happy to help you get that booked. Drop your name and email below and Josiah will personally reach out to schedule a quick call.",
+      answer: "Happy to help you get that booked. Drop your info below and Josiah will personally reach out to schedule a quick call.",
       showForm: true,
       formButtonLabel: 'Book my consultation',
     },
@@ -123,8 +196,10 @@
         "let's go", 'lets go', 'i want a website', 'i need a website', 'get me a website', 'build me a website',
         'i want in', "i'm interested", 'im interested', 'yes please', "let's get started", 'lets get started',
         'help me get a website', 'help me get started', 'help me book', 'i need help getting started',
+        "i'd like to get started", 'id like to get started', 'i would like to get started', 'what are the next steps',
+        'whats the next step', "what's the next step", 'whats next', "what's next",
       ],
-      answer: "Love it, let's make it happen! Drop your name and email below and Josiah will reach out to get things moving.",
+      answer: "Love it, let's make it happen! Drop your info below and Josiah will reach out to get things moving.",
       showForm: true,
       formButtonLabel: "Let's get started",
     },
@@ -151,12 +226,12 @@
     },
     {
       id: 'upgrade-downgrade',
-      keywords: ['upgrade my plan', 'downgrade', 'switch plans', 'change plans'],
+      keywords: ['upgrade my plan', 'downgrade', 'switch plans', 'change plans', 'upgrade', 'upgrade later'],
       answer: "Yes. Upgrades take effect immediately, we build out the extra pages and features and you start paying the higher rate right away. Downgrades take effect at your next billing cycle, and anything beyond the lower plan's limits gets unpublished.",
     },
     {
       id: 'missed-payment',
-      keywords: ['missed payment', 'late payment', 'payment failed', 'site go down if i dont pay'],
+      keywords: ['missed payment', 'late payment', 'payment failed', 'site go down if i dont pay', 'miss a payment', "what happens if i miss", "what happens if i don't pay", "what happens if i dont pay"],
       answer: "You get a 7-day grace period to update your payment method, and your site stays online during that window while we reach out to collect. If payment still isn't received after that, the site may be temporarily suspended until the account is current, then restored promptly once payment goes through.",
     },
     {
@@ -170,9 +245,34 @@
       answer: "We build custom sites with modern HTML, CSS, and JavaScript (with AI-assisted development), not bulky themes or page builders, so it's fast and responsive. Your site is fully managed by us while you're on a plan; if you'd rather own it outright, we offer a WordPress buyout option.",
     },
     {
+      id: 'objection-have-website',
+      keywords: ['i already have a website', 'already have a site', 'i have a website already', 'existing website already'],
+      answer: "No problem, plenty of our clients come to us with an existing site. Is it more that it's not bringing in enough leads, or that it just feels outdated? We do full redesigns that keep your existing Google rankings intact, and we can also add the AI chatbot to a site you already have.",
+    },
+    {
+      id: 'objection-expensive',
+      keywords: ['too expensive', "can't afford", 'cant afford', 'out of my budget', "that's a lot", 'thats a lot', 'pricey', 'a bit much'],
+      answer: "Totally fair to ask. Compare it to hiring separately for hosting, security, SEO, and a developer on call, that alone often runs more than our monthly plan, and it's already bundled in. Which matters more to you right now, the upfront setup or the monthly cost? I can point you toward the plan that fits best.",
+    },
+    {
+      id: 'objection-no-chatbot',
+      keywords: ["i don't need a chatbot", 'dont need a chatbot', 'no chatbot', "don't need the chatbot", 'skip the chatbot', "don't want a chatbot", 'dont want a chatbot'],
+      answer: "That's okay, it's optional, not required with any website plan. Out of curiosity, how do you currently handle questions when you're not available, after hours, weekends, holidays? The chatbot mainly helps businesses that get missed calls or messages outside business hours.",
+    },
+    {
+      id: 'objection-no-time',
+      keywords: ["i don't have time", 'dont have time', 'no time for this', 'too busy', "i'm too busy", 'im too busy'],
+      answer: "Totally understandable, most of our clients don't either. That's actually the point, we handle content collection, design, and setup, it takes maybe an hour of your time total across the whole process. What would make this easiest for you, a quick call, or a short form whenever you get a chance?",
+    },
+    {
+      id: 'objection-not-sure',
+      keywords: ["not sure it'll work", 'not sure it will work', 'not sure this will work', 'does this actually work', 'will this even work', 'skeptical', 'will this help my business'],
+      answer: "Fair question. We can't promise specific rankings or results, nobody honestly can, but an actively managed site with real SEO behind it consistently outperforms a neglected one over time, and the chatbot specifically catches leads you'd otherwise miss after hours. What outcome matters most to you, more calls, more quote requests, or just looking more established online?",
+    },
+    {
       id: 'contact',
-      keywords: ['contact', 'quote', 'get started', 'talk to someone', 'call you', 'hire you', 'sign up', 'i need a quote'],
-      answer: "Happy to help. Drop your name and email below and Josiah will personally reach out, or fill out the full quote form if you'd rather.",
+      keywords: ['contact', 'quote', 'get started', 'talk to someone', 'call you', 'hire you', 'sign up', 'i need a quote', 'i need help', "i'd like a quote", 'id like a quote', 'i would like a quote'],
+      answer: "Happy to help. Drop your info below and Josiah will personally reach out, or fill out the full quote form if you'd rather.",
       link: { label: 'Get a free quote', href: '/#contact' },
       showForm: true,
       formButtonLabel: 'Get my free quote',
@@ -213,17 +313,112 @@
   ];
 
   var QUICK_REPLIES = [
-    { label: 'How much does it cost?', id: 'pricing' },
+    { label: 'How much does a website cost?', id: 'pricing' },
+    { label: "What's the AI chatbot cost?", id: 'chatbot-pricing' },
     { label: 'How long does it take?', id: 'timeline' },
-    { label: 'What areas do you serve?', id: 'service-area' },
     { label: 'How do I get started?', id: 'contact' },
   ];
 
-  var GREETING = "Hi! I'm the Proffit Marketing assistant. Ask me about pricing, timelines, services, or service areas, or tap a question below.";
-  var FALLBACK = "I don't have an exact answer for that yet. Want to leave your name and email so we can follow up personally?";
+  var GREETING = "Hi! I'm the Proffit Marketing assistant. Ask me about website pricing, the AI chatbot, services, or timelines, or tap a question below.";
+  var FALLBACK = "I don't have an exact answer for that yet. Want to leave your info so we can follow up personally?";
 
-  function normalize(str) {
-    return (str || '').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+  // ---------- Intent classification ----------
+  // Plain keyword scoring alone gets a few things wrong (chatbot pricing
+  // questions matching the generic website-pricing entry, for example), so
+  // these two routers run first and force a specific, correct answer before
+  // falling through to the keyword-scored FAQ_DATA lookup below.
+
+  var CHATBOT_WORDS = ['chatbot', 'chat bot', 'ai chat', 'ai assistant', 'ai employee'];
+  var WEBSITE_WORDS = ['website', 'web site', 'site', 'web design'];
+  var PRICE_WORDS = ['price', 'pricing', 'cost', 'how much', 'rate', 'rates', 'fee', 'fees'];
+  var BUNDLE_WORDS = ['both', 'bundle', 'together', 'and a website', 'and the website', 'with a website', 'plus a website', 'combined', 'total cost'];
+  var EXCLUSIVITY_WORDS = [
+    'only want', 'just want', 'just the chatbot', 'only the chatbot', 'not the website', "don't need a website",
+    'dont need a website', 'without a website', 'no website needed', 'just need the chatbot', 'just need chatbot',
+  ];
+  var TIER_WORDS = { starter: ['starter'], growth: ['growth'], authority: ['authority'] };
+
+  function classifyPricingIntent(text) {
+    var norm = ' ' + normalize(text) + ' ';
+    var hasChatbot = hasAny(norm, CHATBOT_WORDS);
+    var hasPrice = hasAny(norm, PRICE_WORDS);
+    if (hasChatbot) {
+      if (hasPrice && (hasAny(norm, BUNDLE_WORDS) || hasAny(norm, WEBSITE_WORDS))) return findById('bundle-pricing');
+      if (hasPrice || hasAny(norm, EXCLUSIVITY_WORDS)) return findById('chatbot-pricing');
+      return null;
+    }
+    if (hasPrice) {
+      if (hasAny(norm, TIER_WORDS.starter)) return findById('starter');
+      if (hasAny(norm, TIER_WORDS.growth)) return findById('growth');
+      if (hasAny(norm, TIER_WORDS.authority)) return findById('authority');
+    }
+    return null;
+  }
+
+  // Industry statements ("I own a pressure washing company") need the
+  // matched industry name interpolated into the response, so this can't be
+  // a static FAQ_DATA entry, it's built dynamically instead.
+  var INDUSTRY_MAP = [
+    ['window cleaning', 'window cleaning', 'website-design-for-window-cleaning-companies'],
+    ['pressure washing', 'pressure washing', 'website-design-for-pressure-washing-companies'],
+    ['tree service', 'tree service', 'website-design-for-tree-services'],
+    ['tree removal', 'tree service', 'website-design-for-tree-services'],
+    ['roofing', 'roofing', 'website-design-for-roofers'],
+    ['roofer', 'roofing', 'website-design-for-roofers'],
+    ['plumbing', 'plumbing', 'website-design-for-plumbers'],
+    ['plumber', 'plumbing', 'website-design-for-plumbers'],
+    ['hvac', 'HVAC', 'website-design-for-hvac-companies'],
+    ['electrician', 'electrical', 'website-design-for-electricians'],
+    ['electrical', 'electrical', 'website-design-for-electricians'],
+    ['landscap', 'landscaping', 'website-design-for-landscapers'],
+    ['cleaning company', 'cleaning', 'website-design-for-cleaning-companies'],
+    ['cleaning business', 'cleaning', 'website-design-for-cleaning-companies'],
+    ['cleaning service', 'cleaning', 'website-design-for-cleaning-companies'],
+    ['painting', 'painting', 'website-design-for-painting-contractors'],
+    ['painter', 'painting', 'website-design-for-painting-contractors'],
+    ['concrete', 'concrete', 'website-design-for-concrete-contractors'],
+    ['fence', 'fencing', 'website-design-for-fence-companies'],
+    ['law firm', 'legal', 'website-design-for-law-firms'],
+    ['lawyer', 'legal', 'website-design-for-law-firms'],
+    ['attorney', 'legal', 'website-design-for-law-firms'],
+    ['dentist', 'dental', 'website-design-for-dentists'],
+    ['dental', 'dental', 'website-design-for-dentists'],
+    ['chiropract', 'chiropractic', 'website-design-for-chiropractors'],
+    ['med spa', 'med spa', 'website-design-for-med-spas'],
+    ['medspa', 'med spa', 'website-design-for-med-spas'],
+    ['gym', 'fitness', 'website-design-for-gyms'],
+    ['fitness', 'fitness', 'website-design-for-gyms'],
+    ['realtor', 'real estate', 'website-design-for-realtors'],
+    ['real estate', 'real estate', 'website-design-for-realtors'],
+    ['restaurant', 'restaurant', 'website-design-for-restaurants'],
+    ['auto detail', 'auto detailing', 'website-design-for-auto-detailers'],
+  ];
+  var INDUSTRY_CUES = [
+    'i own', 'i have a', 'i run', 'my business', "i'm a", 'im a', 'we are a', 'we run a', 'i am a',
+    'do you build', 'do you work with', 'do you do websites for', 'website for my', 'website for a',
+  ];
+
+  function classifyIndustry(text) {
+    var norm = ' ' + normalize(text) + ' ';
+    if (hasAny(norm, PRICE_WORDS)) return null;
+    if (!hasAny(norm, INDUSTRY_CUES)) return null;
+    for (var i = 0; i < INDUSTRY_MAP.length; i++) {
+      var row = INDUSTRY_MAP[i];
+      if (norm.indexOf(normalize(row[0])) !== -1) {
+        var label = row[1];
+        var blogSlug = row[2];
+        return {
+          id: 'industry-' + blogSlug,
+          answer:
+            label.charAt(0).toUpperCase() + label.slice(1) +
+            " businesses are exactly who we build for. Most " + label +
+            " clients care most about fast-loading pages, clear calls to action, and showing up when local customers search for " +
+            label + " near them. I can point you to our full guide, or grab your info so Josiah can look at what would work best for your business.",
+          link: { label: 'Website design for ' + label, href: '/blog/' + blogSlug + '.html' },
+        };
+      }
+    }
+    return null;
   }
 
   function findBestMatch(input) {
@@ -243,6 +438,10 @@
       }
     }
     return best;
+  }
+
+  function classifyIntent(text) {
+    return classifyPricingIntent(text) || classifyIndustry(text) || findBestMatch(text);
   }
 
   function findById(id) {
@@ -367,7 +566,7 @@
     // ---------- Rendering ----------
     function botBubbleHtml(text, link) {
       var html =
-        '<div style="max-width:88%;align-self:flex-start;background:#eef4ff;color:#0e1116;padding:10px 14px;border-radius:14px 14px 14px 4px;font-size:.87rem;line-height:1.55">' +
+        '<div style="max-width:88%;align-self:flex-start;background:#eef4ff;color:#0e1116;padding:10px 14px;border-radius:14px 14px 14px 4px;font-size:.87rem;line-height:1.55;white-space:pre-line">' +
         escapeHtml(text);
       if (link) {
         html +=
@@ -404,10 +603,25 @@
     }
 
     function leadFormHtml() {
+      var fieldStyle = 'padding:9px 12px;border:1px solid #e4e7ee;border-radius:9px;font-family:inherit;font-size:.85rem;outline:none;width:100%;box-sizing:border-box;background:#fff';
       return (
         '<div id="pf-lead-form" style="background:#fafbfc;border:1px solid #eef0f4;border-radius:14px;padding:14px;display:grid;gap:8px">' +
-        '<input id="pf-lead-name" type="text" placeholder="Your name" style="padding:9px 12px;border:1px solid #e4e7ee;border-radius:9px;font-family:inherit;font-size:.85rem;outline:none">' +
-        '<input id="pf-lead-email" type="email" placeholder="Your email" style="padding:9px 12px;border:1px solid #e4e7ee;border-radius:9px;font-family:inherit;font-size:.85rem;outline:none">' +
+        '<div style="font-size:.78rem;color:#6b7280;margin-bottom:2px">Just a few details and Josiah will reach out.</div>' +
+        '<input id="pf-lead-name" type="text" placeholder="Your name" style="' + fieldStyle + '">' +
+        '<input id="pf-lead-phone" type="tel" placeholder="Phone number" style="' + fieldStyle + '">' +
+        '<input id="pf-lead-email" type="email" placeholder="Email (optional)" style="' + fieldStyle + '">' +
+        '<select id="pf-lead-method" style="' + fieldStyle + '">' +
+        '<option value="Either">Prefer we call or text?</option>' +
+        '<option value="Call">Call me</option>' +
+        '<option value="Text">Text me</option>' +
+        '</select>' +
+        '<select id="pf-lead-time" style="' + fieldStyle + '">' +
+        '<option value="Anytime">Best time to reach you? Anytime</option>' +
+        '<option value="Morning">Morning</option>' +
+        '<option value="Afternoon">Afternoon</option>' +
+        '<option value="Evening">Evening</option>' +
+        '</select>' +
+        '<textarea id="pf-lead-desc" rows="2" placeholder="Tell us a bit about your business or project (optional)" style="' + fieldStyle + ';resize:vertical;font-family:inherit"></textarea>' +
         '<button id="pf-lead-submit" style="background:#2563eb;color:#fff;border:none;padding:10px;border-radius:9px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:inherit">' + escapeHtml(leadFormButtonLabel) + '</button>' +
         '</div>'
       );
@@ -455,31 +669,51 @@
       var submitBtn = document.getElementById('pf-lead-submit');
       if (!submitBtn) return;
       submitBtn.addEventListener('click', function () {
-        var name = document.getElementById('pf-lead-name').value.trim();
-        var email = document.getElementById('pf-lead-email').value.trim();
-        var validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        if (!name || !validEmail) {
-          if (!name) document.getElementById('pf-lead-name').style.borderColor = '#e5484d';
-          if (!validEmail) document.getElementById('pf-lead-email').style.borderColor = '#e5484d';
+        var nameEl = document.getElementById('pf-lead-name');
+        var phoneEl = document.getElementById('pf-lead-phone');
+        var emailEl = document.getElementById('pf-lead-email');
+        var name = nameEl.value.trim();
+        var phone = phoneEl.value.trim();
+        var email = emailEl.value.trim();
+        var method = document.getElementById('pf-lead-method').value;
+        var bestTime = document.getElementById('pf-lead-time').value;
+        var desc = document.getElementById('pf-lead-desc').value.trim();
+        var phoneDigits = phone.replace(/\D/g, '').length;
+        var validPhone = phoneDigits >= 7;
+        var validEmail = !email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        if (!name || !validPhone || !validEmail) {
+          if (!name) nameEl.style.borderColor = '#e5484d';
+          if (!validPhone) phoneEl.style.borderColor = '#e5484d';
+          if (!validEmail) emailEl.style.borderColor = '#e5484d';
           return;
         }
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
+        var payload = {
+          Name: name,
+          Phone: phone,
+          'Preferred Contact Method': method,
+          'Best Time to Reach': bestTime,
+          'Project Description': desc || lastUnansweredQuestion,
+          Message: lastUnansweredQuestion,
+          Source: 'Chatbot widget',
+        };
+        if (email) {
+          payload.Email = email;
+          payload._replyto = email;
+        }
         fetch(FORMSPREE_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            'First Name': name,
-            Email: email,
-            Message: lastUnansweredQuestion,
-            Source: 'Chatbot widget',
-            _replyto: email,
-          }),
+          body: JSON.stringify(payload),
         })
           .then(function (res) {
             showLeadForm = false;
             if (res.ok) {
-              log.push({ role: 'bot', text: "Thanks, " + name + "! We've got your info and will follow up within 24 hours." });
+              log.push({
+                role: 'bot',
+                text: "Perfect, thank you! I'll pass this along to Josiah, and he'll reach out during your preferred time using your preferred contact method.",
+              });
             } else {
               log.push({ role: 'bot', text: "Something went wrong sending that. Feel free to call us at (904) 397-4279 instead." });
             }
@@ -495,7 +729,7 @@
 
     function handleUserMessage(text, matchedEntry) {
       log.push({ role: 'user', text: text });
-      var match = matchedEntry || findBestMatch(text);
+      var match = matchedEntry || classifyIntent(text);
       if (match) {
         log.push({ role: 'bot', text: match.answer, link: match.link });
         if (match.showForm) {
