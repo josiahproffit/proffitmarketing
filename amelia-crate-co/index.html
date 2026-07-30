@@ -70,15 +70,24 @@
   .hero-text p.tight{color:var(--gold-light);font-weight:700;font-family:var(--sans);text-transform:uppercase;letter-spacing:.04em;margin:16px 0 0;font-size:.92rem}
   .hero-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:30px}
 
-  .label-panel{border:2px solid var(--gold);padding:26px;transform:rotate(1.2deg);background:var(--panel)}
-  .label-panel .inner{border:1px dashed rgba(211,163,91,.5);padding:22px;text-align:center}
-  .label-panel .crate-icon{width:64px;height:64px;margin:0 auto 14px}
+  .label-panel{border:2px solid var(--gold);padding:10px;transform:rotate(1.2deg);background:var(--panel)}
+  .label-panel .crate-photo{width:100%;display:block}
+  .label-panel .inner{border:1px dashed rgba(211,163,91,.5);border-top:none;padding:16px 22px 4px;text-align:center}
   .label-panel .spec{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid var(--line);font-family:var(--sans);font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:#cfc8bb}
   .label-panel .spec:first-of-type{border-top:none}
   .label-panel .spec span:last-child{color:var(--gold-light);font-weight:700}
 
   /* PROCESS */
   #process{background:var(--panel)}
+
+  /* CRATE */
+  .crate-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+  .crate-grid .crate-photo{width:100%;border:2px solid var(--gold)}
+  .crate-grid h2{margin-top:10px;font-size:clamp(1.7rem,3.4vw,2.3rem)}
+  .crate-copy{color:var(--gray);font-size:1rem;margin-top:16px;max-width:480px}
+  .crate-list{list-style:none;margin:22px 0 0;padding:0}
+  .crate-list li{color:#cfc8bb;font-size:.94rem;padding:10px 0;border-top:1px solid var(--line)}
+  .crate-list li:first-child{border-top:none}
   .section-head{max-width:640px;margin:0 0 44px}
   .section-head h2{font-size:clamp(1.7rem,3.4vw,2.3rem);margin-top:10px}
   .section-head p{color:var(--gray);margin-top:12px;font-size:1rem}
@@ -146,6 +155,7 @@
     .hero-grid{grid-template-columns:1fr}
     .label-panel{max-width:340px;margin:0 auto}
     .steps{grid-template-columns:1fr}
+    .crate-grid{grid-template-columns:1fr;gap:32px}
     .price-grid{grid-template-columns:1fr}
     .review-grid{grid-template-columns:1fr;gap:30px}
     .footer-top{grid-template-columns:1fr}
@@ -199,8 +209,8 @@
       </div>
     </div>
     <div class="label-panel">
+      <img class="crate-photo" src="images/crate-angle.jpg" alt="Amelia Crate Co heavy-duty 27-gallon moving crate">
       <div class="inner">
-        <svg class="crate-icon" viewBox="0 0 100 100" fill="none"><path d="M28 38h44l-4 40a4 4 0 0 1-4 4H36a4 4 0 0 1-4-4z" stroke="#d3a35b" stroke-width="5"/><path d="M24 38h52M40 38v-6a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v6" stroke="#d3a35b" stroke-width="5"/><line x1="38" y1="50" x2="62" y2="50" stroke="#d3a35b" stroke-width="4"/></svg>
         <div class="spec"><span>Capacity</span><span>27 Gal</span></div>
         <div class="spec"><span>Build</span><span>Heavy Poly</span></div>
         <div class="spec"><span>Use</span><span>Stackable</span></div>
@@ -232,6 +242,23 @@
         <h3>We pickup at your new place.</h3>
         <p>Once you&rsquo;ve unpacked, we come to you at your new address. No drop-off run. No hassle.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="crate">
+  <div class="wrap crate-grid">
+    <img class="crate-photo" src="images/crate-front.jpg" alt="Front view of the Amelia Crate Co 27-gallon moving crate">
+    <div>
+      <span class="eyebrow">The Crate</span>
+      <h2>27 gallons. Zero excuses.</h2>
+      <p class="crate-copy">Every Amelia Crate Co tote is a heavy-duty, stackable 27-gallon bin with a snap-lock lid &mdash; built to survive a move, not just one trip to the curb.</p>
+      <ul class="crate-list">
+        <li>Snap-lock lid keeps contents secure in transit</li>
+        <li>Reinforced walls stack safely up to 5 high</li>
+        <li>Numbered for easy tracking on delivery and pickup</li>
+        <li>Wiped down and sanitized between every rental</li>
+      </ul>
     </div>
   </div>
 </section>
